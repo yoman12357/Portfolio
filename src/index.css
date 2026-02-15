@@ -1,0 +1,375 @@
+/* ============================================================
+   ARYAN BOKOLIA – FUTURISTIC PORTFOLIO  (React + CSS)
+   Global Design Tokens & Reset
+   ============================================================ */
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Rajdhani:wght@300;400;500;600;700&family=Space+Grotesk:wght@300;400;500;600;700&display=swap');
+
+:root {
+  --bg: #030014;
+  --bg-card: rgba(255, 255, 255, 0.03);
+  --bg-card-hover: rgba(255, 255, 255, 0.06);
+  --surface: #0a0a1a;
+  --border: rgba(255, 255, 255, 0.06);
+  --border-glow: rgba(0, 245, 255, 0.15);
+
+  --text: #e0e0ff;
+  --text-dim: #8888aa;
+  --text-muted: #555570;
+
+  --cyan: #00f5ff;
+  --magenta: #ff2dff;
+  --violet: #7b2dff;
+  --lime: #39ff14;
+  --hot-pink: #ff006e;
+  --amber: #ffaa00;
+
+  --glow-cyan: 0 0 20px rgba(0, 245, 255, 0.35);
+  --glow-magenta: 0 0 20px rgba(255, 45, 255, 0.3);
+
+  --radius: 16px;
+  --radius-sm: 8px;
+  --font-display: 'Orbitron', sans-serif;
+  --font-body: 'Space Grotesk', 'Rajdhani', sans-serif;
+  --font-mono: 'Rajdhani', monospace;
+
+  --transition: 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  --spring: 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 1.7;
+  overflow-x: hidden;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+ul {
+  list-style: none;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+button {
+  cursor: pointer;
+  border: none;
+  background: none;
+  font-family: inherit;
+}
+
+/* ─── Utilities ─── */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+.accent {
+  background: linear-gradient(135deg, var(--cyan), var(--magenta));
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.glass-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  backdrop-filter: blur(12px);
+  transition: background var(--transition), border-color var(--transition), transform var(--transition), box-shadow var(--transition);
+}
+
+.glass-card:hover {
+  background: var(--bg-card-hover);
+  border-color: var(--border-glow);
+  transform: translateY(-4px);
+  box-shadow: 0 8px 32px rgba(0, 245, 255, 0.08);
+}
+
+/* ─── Section / Tag styling ─── */
+.section {
+  position: relative;
+  z-index: 1;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  padding: 7rem 2rem;
+}
+
+.section-header {
+  margin-bottom: 3rem;
+}
+
+.section-tag {
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  letter-spacing: 2px;
+}
+
+.section-tag-close {
+  display: block;
+  margin-top: 3rem;
+  text-align: right;
+}
+
+.section-title {
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 5vw, 3.2rem);
+  font-weight: 800;
+  color: #fff;
+  margin: 0.5rem 0;
+}
+
+.section-subtitle {
+  color: var(--text-dim);
+  font-size: 1.05rem;
+  margin-top: 0.5rem;
+}
+
+/* ─── Reveal ─── */
+.reveal {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ─── Tags ─── */
+.tag {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  letter-spacing: 1px;
+  padding: 0.25rem 0.7rem;
+  border: 1px solid var(--border);
+  border-radius: 100px;
+  color: var(--text-dim);
+  transition: var(--transition);
+}
+
+.tag:hover {
+  border-color: var(--cyan);
+  color: var(--cyan);
+  box-shadow: var(--glow-cyan);
+}
+
+/* ─── Buttons ─── */
+.btn {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.9rem 2rem;
+  border-radius: 100px;
+  font-family: var(--font-display);
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  overflow: hidden;
+  transition: var(--transition);
+}
+
+.btn-primary {
+  background: linear-gradient(135deg, var(--cyan), var(--violet));
+  color: #000;
+  box-shadow: 0 4px 24px rgba(0, 245, 255, 0.25);
+}
+
+.btn-primary:hover {
+  box-shadow: 0 8px 40px rgba(0, 245, 255, 0.4);
+  transform: translateY(-2px);
+}
+
+.btn-glow {
+  position: absolute;
+  inset: -50%;
+  background: conic-gradient(from 0deg, transparent, var(--cyan), transparent, var(--magenta), transparent);
+  opacity: 0;
+  transition: opacity 0.4s;
+  animation: glowSpin 3s linear infinite;
+  z-index: -1;
+}
+
+.btn-primary:hover .btn-glow {
+  opacity: 0.3;
+}
+
+@keyframes glowSpin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.btn-outline {
+  border: 1px solid var(--border-glow);
+  color: var(--cyan);
+}
+
+.btn-outline:hover {
+  background: rgba(0, 245, 255, 0.06);
+  border-color: var(--cyan);
+  box-shadow: var(--glow-cyan);
+  transform: translateY(-2px);
+}
+
+/* ─── Scrollbar ─── */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bg);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--cyan);
+  border-radius: 100px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--magenta);
+}
+
+/* ─── Selection ─── */
+::selection {
+  background: rgba(0, 245, 255, 0.25);
+  color: #fff;
+}
+
+/* ─── Scanline overlay ─── */
+.scanline-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  pointer-events: none;
+  background: repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(0, 0, 0, 0.03) 2px, rgba(0, 0, 0, 0.03) 4px);
+  opacity: 0.4;
+}
+
+@media (max-width:480px) {
+  .section {
+    padding: 5rem 1rem;
+  }
+}
+
+/* ============================================================
+   LIGHT THEME OVERRIDES
+   ============================================================ */
+[data-theme="light"] {
+  --bg: #f0f0f8;
+  --bg-card: rgba(255, 255, 255, 0.7);
+  --bg-card-hover: rgba(255, 255, 255, 0.9);
+  --surface: #e8e8f0;
+  --border: rgba(0, 0, 0, 0.08);
+  --border-glow: rgba(0, 150, 200, 0.2);
+
+  --text: #1a1a2e;
+  --text-dim: #555570;
+  --text-muted: #8888aa;
+
+  --cyan: #0099cc;
+  --magenta: #cc00cc;
+  --violet: #6600cc;
+
+  --glow-cyan: 0 0 15px rgba(0, 153, 204, 0.2);
+  --glow-magenta: 0 0 15px rgba(204, 0, 204, 0.15);
+}
+
+[data-theme="light"] body {
+  background: var(--bg);
+  color: var(--text);
+}
+
+[data-theme="light"] .section-title {
+  color: #1a1a2e;
+}
+
+[data-theme="light"] .glass-card {
+  backdrop-filter: blur(12px) saturate(1.2);
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.04);
+}
+
+[data-theme="light"] .glass-card:hover {
+  box-shadow: 0 8px 32px rgba(0, 153, 204, 0.1);
+}
+
+[data-theme="light"] .scanline-overlay {
+  display: none;
+}
+
+[data-theme="light"] .particle-canvas {
+  opacity: 0.3;
+}
+
+[data-theme="light"] .cursor-glow {
+  background: radial-gradient(circle, rgba(0, 153, 204, 0.04) 0%, transparent 70%);
+}
+
+[data-theme="light"] .header--scrolled {
+  background: rgba(240, 240, 248, 0.85);
+}
+
+[data-theme="light"] ::-webkit-scrollbar-track {
+  background: var(--bg);
+}
+
+[data-theme="light"] ::selection {
+  background: rgba(0, 153, 204, 0.2);
+  color: #1a1a2e;
+}
+
+[data-theme="light"] .hero__name-line {
+  background: linear-gradient(135deg, #1a1a2e 0%, var(--cyan) 50%, var(--magenta) 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+}
+
+[data-theme="light"] .btn-primary {
+  color: #fff;
+}
+
+[data-theme="light"] .stat__num {
+  color: #1a1a2e;
+}
+
+[data-theme="light"] .gh__stat-num {
+  color: #1a1a2e;
+}
+
+[data-theme="light"] .loader {
+  background: var(--bg);
+}
+
+[data-theme="light"] .loader__char {
+  background: linear-gradient(135deg, #1a1a2e, var(--cyan));
+  -webkit-background-clip: text;
+  background-clip: text;
+}

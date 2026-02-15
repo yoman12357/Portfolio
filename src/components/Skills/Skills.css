@@ -1,0 +1,137 @@
+.skills__cats {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+    margin-bottom: 3rem;
+}
+
+@media (max-width:480px) {
+    .skills__cats {
+        grid-template-columns: 1fr;
+    }
+}
+
+.skills__cat {
+    padding: 2rem;
+}
+
+.skills__cat-title {
+    font-family: var(--font-display);
+    font-size: 1rem;
+    letter-spacing: 2px;
+    margin-bottom: 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+}
+
+.skills__list {
+    display: flex;
+    flex-direction: column;
+    gap: 1.2rem;
+}
+
+.skills__row {
+    display: grid;
+    grid-template-columns: 140px 1fr 45px;
+    gap: 1rem;
+    align-items: center;
+}
+
+@media (max-width:480px) {
+    .skills__row {
+        grid-template-columns: 110px 1fr 38px;
+        gap: .6rem;
+    }
+}
+
+.skills__info {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.9rem;
+}
+
+.skills__ico {
+    font-size: 1.1rem;
+}
+
+.skills__bar {
+    height: 6px;
+    border-radius: 100px;
+    background: rgba(255, 255, 255, 0.06);
+    overflow: hidden;
+}
+
+.skills__fill {
+    height: 100%;
+    width: 0;
+    border-radius: 100px;
+    background: linear-gradient(90deg, var(--cyan), var(--magenta));
+    box-shadow: 0 0 12px rgba(0, 245, 255, 0.4);
+    transition: width 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.skills__fill--go {
+    width: var(--target);
+}
+
+.skills__pct {
+    font-family: var(--font-mono);
+    font-size: 0.8rem;
+    color: var(--cyan);
+    text-align: right;
+}
+
+/* Orbit */
+.skills__orbit {
+    margin: 2rem auto;
+    width: 260px;
+    height: 260px;
+    position: relative;
+}
+
+.orbit__ring {
+    position: absolute;
+    inset: 0;
+    border: 1px dashed rgba(0, 245, 255, 0.12);
+    border-radius: 50%;
+    animation: orbitSpin 20s linear infinite;
+}
+
+.orbit__node {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 60px;
+    height: 60px;
+    margin: -30px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 50%;
+    transform: rotate(calc(360deg / var(--total) * var(--i))) translateX(120px) rotate(calc(-360deg / var(--total) * var(--i)));
+    animation: counterSpin 20s linear infinite;
+    font-size: 1.3rem;
+}
+
+.orbit__node small {
+    font-size: 0.55rem;
+    color: var(--text-muted);
+    margin-top: 1px;
+}
+
+@keyframes orbitSpin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes counterSpin {
+    to {
+        transform: rotate(calc(360deg / var(--total) * var(--i))) translateX(120px) rotate(calc(-360deg / var(--total) * var(--i) - 360deg));
+    }
+}

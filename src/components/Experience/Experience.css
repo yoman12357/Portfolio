@@ -1,0 +1,174 @@
+/* Tab switcher */
+.exp__tabs {
+    display: flex;
+    gap: 0.8rem;
+    margin-bottom: 2.5rem;
+    flex-wrap: wrap;
+}
+
+.exp__tab {
+    font-family: var(--font-display);
+    font-size: 0.78rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    padding: 0.7rem 1.8rem;
+    border: 1px solid var(--border);
+    border-radius: 100px;
+    color: var(--text-dim);
+    transition: var(--transition);
+    cursor: pointer;
+}
+
+.exp__tab:hover {
+    border-color: var(--cyan);
+    color: var(--cyan);
+}
+
+.exp__tab--active {
+    background: linear-gradient(135deg, rgba(0, 245, 255, 0.1), rgba(255, 45, 255, 0.05));
+    border-color: var(--cyan);
+    color: var(--cyan);
+    box-shadow: var(--glow-cyan);
+}
+
+.timeline {
+    position: relative;
+    padding-left: 3rem;
+}
+
+.timeline::before {
+    content: '';
+    position: absolute;
+    left: 10px;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    background: linear-gradient(to bottom, var(--cyan), var(--magenta), transparent);
+}
+
+.timeline__item {
+    position: relative;
+    margin-bottom: 2.5rem;
+}
+
+.timeline__marker {
+    position: absolute;
+    left: -3rem;
+    top: 1.2rem;
+    width: 22px;
+    height: 22px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.timeline__dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: var(--cyan);
+    box-shadow: 0 0 16px var(--cyan);
+    position: relative;
+}
+
+.timeline__dot::after {
+    content: '';
+    position: absolute;
+    inset: -5px;
+    border-radius: 50%;
+    border: 2px solid rgba(0, 245, 255, 0.2);
+    animation: markerPulse 2s ease-in-out infinite;
+}
+
+@keyframes markerPulse {
+
+    0%,
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+
+    50% {
+        transform: scale(1.6);
+        opacity: 0;
+    }
+}
+
+.timeline__card {
+    padding: 1.8rem;
+}
+
+.timeline__badge {
+    display: inline-block;
+    font-family: var(--font-mono);
+    font-size: 0.65rem;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--magenta);
+    border: 1px solid rgba(255, 45, 255, 0.2);
+    padding: 0.2rem 0.8rem;
+    border-radius: 100px;
+    margin-bottom: 0.8rem;
+}
+
+.timeline__card h3 {
+    font-family: var(--font-display);
+    font-size: 1.1rem;
+    margin-bottom: 0.3rem;
+}
+
+.timeline__org {
+    color: var(--cyan);
+    font-size: 0.9rem;
+    margin-bottom: 0.5rem;
+}
+
+.timeline__meta {
+    display: flex;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+    margin-bottom: 0.8rem;
+    font-size: 0.82rem;
+    color: var(--text-muted);
+}
+
+.timeline__desc {
+    color: var(--text-dim);
+    font-size: 0.92rem;
+    margin-bottom: 0.8rem;
+}
+
+.timeline__points {
+    margin-bottom: 1rem;
+}
+
+.timeline__points li {
+    position: relative;
+    padding-left: 1.2rem;
+    margin-bottom: 0.4rem;
+    font-size: 0.88rem;
+    color: var(--text-dim);
+}
+
+.timeline__points li::before {
+    content: '▹';
+    position: absolute;
+    left: 0;
+    color: var(--cyan);
+}
+
+.timeline__tags {
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+}
+
+@media (max-width:480px) {
+    .timeline {
+        padding-left: 2rem;
+    }
+
+    .timeline__marker {
+        left: -2rem;
+    }
+}

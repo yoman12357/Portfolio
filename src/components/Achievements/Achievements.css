@@ -1,0 +1,150 @@
+/* ─── Achievements Section ─── */
+
+.ach__highlights {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 1rem;
+    margin-bottom: 3rem;
+}
+
+.ach__highlight {
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+    padding: 1.4rem;
+}
+
+.ach__highlight-icon {
+    font-size: 2rem;
+    flex-shrink: 0;
+    filter: drop-shadow(0 0 8px rgba(0, 245, 255, 0.3));
+}
+
+.ach__highlight h4 {
+    font-family: var(--font-display);
+    font-size: 0.9rem;
+    letter-spacing: 1px;
+    margin-bottom: 0.25rem;
+}
+
+.ach__highlight p {
+    font-size: 0.82rem;
+    color: var(--text-dim);
+    margin: 0;
+    line-height: 1.5;
+}
+
+/* Certifications title */
+.ach__certs-title {
+    font-family: var(--font-display);
+    font-size: 1.2rem;
+    letter-spacing: 1px;
+    margin-bottom: 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+}
+
+.ach__certs-icon {
+    font-size: 1.4rem;
+}
+
+/* Certifications grid */
+.ach__certs {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1rem;
+}
+
+.ach__cert {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1.4rem;
+    position: relative;
+    overflow: hidden;
+}
+
+.ach__cert::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 3px;
+    background: var(--cert-color, var(--cyan));
+    box-shadow: 0 0 12px var(--cert-color, var(--cyan));
+}
+
+.ach__cert-icon {
+    font-size: 2rem;
+    width: 50px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 12px;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    flex-shrink: 0;
+}
+
+.ach__cert-info {
+    flex: 1;
+}
+
+.ach__cert-info h4 {
+    font-family: var(--font-display);
+    font-size: 0.82rem;
+    letter-spacing: 0.5px;
+    margin-bottom: 0.2rem;
+    line-height: 1.4;
+}
+
+.ach__cert-info p {
+    font-size: 0.75rem;
+    color: var(--text-muted);
+    margin: 0;
+}
+
+.ach__cert-badge {
+    font-family: var(--font-mono);
+    font-size: 0.6rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    padding: 0.3rem 0.7rem;
+    border: 1px solid;
+    border-radius: 100px;
+    flex-shrink: 0;
+    animation: badgeGlow 3s ease-in-out infinite;
+}
+
+@keyframes badgeGlow {
+
+    0%,
+    100% {
+        box-shadow: 0 0 4px rgba(0, 245, 255, 0.1);
+    }
+
+    50% {
+        box-shadow: 0 0 12px rgba(0, 245, 255, 0.2);
+    }
+}
+
+@media (max-width: 480px) {
+    .ach__highlights {
+        grid-template-columns: 1fr;
+    }
+
+    .ach__certs {
+        grid-template-columns: 1fr;
+    }
+
+    .ach__cert {
+        flex-wrap: wrap;
+    }
+
+    .ach__cert-badge {
+        margin-top: 0.5rem;
+    }
+}

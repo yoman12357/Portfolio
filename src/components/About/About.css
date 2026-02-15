@@ -1,0 +1,138 @@
+.about__grid {
+    display: grid;
+    grid-template-columns: 320px 1fr;
+    gap: 3rem;
+    align-items: start;
+}
+
+@media (max-width:860px) {
+    .about__grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+.about__card {
+    padding: 2rem;
+    text-align: center;
+}
+
+.about__avatar-wrap {
+    position: relative;
+    width: 140px;
+    height: 140px;
+    margin: 0 auto 1.2rem;
+}
+
+.about__avatar-ring {
+    position: absolute;
+    inset: -6px;
+    border-radius: 50%;
+    border: 2px solid transparent;
+    border-top-color: var(--cyan);
+    border-bottom-color: var(--magenta);
+    animation: loaderSpin 4s linear infinite;
+}
+
+@keyframes loaderSpin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+.about__avatar {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--violet), var(--cyan));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--font-display);
+    font-size: 2.5rem;
+    font-weight: 900;
+    color: #fff;
+}
+
+.about__info h3 {
+    font-family: var(--font-display);
+    font-size: 1.3rem;
+    margin-bottom: 0.3rem;
+}
+
+.about__role {
+    color: var(--cyan);
+    font-size: 0.9rem;
+    letter-spacing: 1px;
+    text-shadow: 0 0 10px rgba(0, 245, 255, 0.2);
+}
+
+.about__role--secondary {
+    color: var(--magenta);
+    font-size: 0.85rem;
+    letter-spacing: 1px;
+    margin-bottom: 1rem;
+}
+
+.about__socials {
+    display: flex;
+    gap: 0.8rem;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.social-chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    padding: 0.45rem 1rem;
+    border: 1px solid var(--border);
+    border-radius: 100px;
+    font-size: 0.8rem;
+    color: var(--text-dim);
+    transition: var(--transition);
+}
+
+.social-chip:hover {
+    border-color: var(--cyan);
+    color: var(--cyan);
+    box-shadow: var(--glow-cyan);
+}
+
+.about__text p {
+    color: var(--text-dim);
+    margin-bottom: 1rem;
+    font-size: 1rem;
+    line-height: 1.8;
+}
+
+.about__highlights {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 1rem;
+    margin-top: 1.5rem;
+}
+
+.about__hl {
+    display: flex;
+    gap: 1rem;
+    padding: 1.2rem;
+    align-items: flex-start;
+}
+
+.about__hl-icon {
+    font-size: 1.8rem;
+    flex-shrink: 0;
+}
+
+.about__hl h4 {
+    font-family: var(--font-display);
+    font-size: 0.85rem;
+    letter-spacing: 1px;
+    margin-bottom: 0.2rem;
+}
+
+.about__hl p {
+    font-size: 0.82rem;
+    color: var(--text-muted);
+    margin: 0;
+}
