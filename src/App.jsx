@@ -1,65 +1,85 @@
-import { motion } from 'framer-motion';
-import './App.css';
-import Loader from './components/Loader/Loader';
-import ParticleCanvas from './components/ParticleCanvas/ParticleCanvas';
-import CursorGlow from './components/CursorGlow/CursorGlow';
-import ScrollProgress from './components/ScrollProgress/ScrollProgress';
-import Header from './components/Header/Header';
-import Hero from './components/Hero/Hero';
-import About from './components/About/About';
-import Skills from './components/Skills/Skills';
-import Experience from './components/Experience/Experience';
-import Achievements from './components/Achievements/Achievements';
-import GitHub from './components/GitHub/GitHub';
-import Projects from './components/Projects/Projects';
-import Contact from './components/Contact/Contact';
-import Footer from './components/Footer/Footer';
-
-const sectionVariants = {
-  hidden: { opacity: 0, y: 60 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: { duration: 0.7, ease: [0.25, 0.46, 0.45, 0.94] },
-  },
-};
-
-function AnimatedSection({ children }) {
-  return (
-    <motion.div
-      variants={sectionVariants}
-      initial="hidden"
-      whileInView="visible"
-      viewport={{ once: true, amount: 0.1 }}
-    >
-      {children}
-    </motion.div>
-  );
-}
+import { MotionConfig } from 'framer-motion';
+import { portfolioData } from './data/portfolioData';
+import { useTheme } from './hooks/useTheme';
+import SiteHeader from './components/site/SiteHeader';
+import HeroSection from './components/site/HeroSection';
+import KeyHighlightsSection from './components/site/KeyHighlightsSection';
+import SectionTransition from './components/site/SectionTransition';
+import StatementSection from './components/site/StatementSection';
+import AboutSection from './components/site/AboutSection';
+import SecurityMindsetSection from './components/site/SecurityMindsetSection';
+import SkillsSection from './components/site/SkillsSection';
+import ProjectsSection from './components/site/ProjectsSection';
+import ExperienceSection from './components/site/ExperienceSection';
+import ContactSection from './components/site/ContactSection';
+import SiteFooter from './components/site/SiteFooter';
 
 export default function App() {
+  const { theme, toggleTheme } = useTheme();
+
   return (
-    <>
-      <Loader />
-      <ParticleCanvas />
-      <CursorGlow />
-      <ScrollProgress />
-      <div className="scanline-overlay" />
+    <MotionConfig
+      reducedMotion="user"
+      transition={{
+        duration: 0.34,
+        ease: [0.22, 1, 0.36, 1],
+      }}
+    >
+      <>
+        <a
+          href="#main-content"
+          className="sr-only fixed left-4 top-4 z-[100] rounded-full bg-foreground px-5 py-3 text-sm font-semibold text-background shadow-[var(--theme-shadow)] focus:not-sr-only focus:outline-none"
+        >
+          Skip to content
+        </a>
 
-      <Header />
+        <div className="relative min-h-screen overflow-x-clip bg-background text-foreground transition-colors duration-500">
+          <div className="ambient-orb ambient-orb--one" />
+          <div className="ambient-orb ambient-orb--two" />
+          <div className="ambient-orb ambient-orb--three" />
 
-      <main>
-        <Hero />
-        <AnimatedSection><About /></AnimatedSection>
-        <AnimatedSection><Skills /></AnimatedSection>
-        <AnimatedSection><Experience /></AnimatedSection>
-        <AnimatedSection><Achievements /></AnimatedSection>
-        <AnimatedSection><GitHub /></AnimatedSection>
-        <AnimatedSection><Projects /></AnimatedSection>
-        <AnimatedSection><Contact /></AnimatedSection>
-      </main>
+          <SiteHeader
+            theme={theme}
+            onToggleTheme={toggleTheme}
+            navigation={portfolioData.navigation}
+            profile={portfolioData.profile}
+          />
 
-      <Footer />
-    </>
+          <main id="main-content" tabIndex="-1">
+            <HeroSection profile={portfolioData.profile} hero={portfolioData.hero} />
+            <KeyHighlightsSection keyHighlights={portfolioData.keyHighlights} />
+            <SectionTransition
+              step="What I Believe"
+              title="The portfolio moves from identity into belief, showing the principles that shape how I approach product quality, trust, and technical decisions."
+            />
+            <StatementSection statement={portfolioData.statement} />
+            <SectionTransition
+              step="What I Do"
+              title="Those principles become practice through my development approach, security mindset, and the technical capabilities I am actively building."
+            />
+            <AboutSection profile={portfolioData.profile} about={portfolioData.about} />
+            <SecurityMindsetSection securityMindset={portfolioData.securityMindset} />
+            <SkillsSection skills={portfolioData.skills} />
+            <SectionTransition
+              step="What I Built"
+              title="The next section turns that capability into tangible work, with projects framed as engineering decisions, systems tradeoffs, and applied learning."
+            />
+            <ProjectsSection projects={portfolioData.projects} />
+            <SectionTransition
+              step="Why It Matters"
+              title="Projects matter most when they compound into stronger judgment, clearer delivery, and a more credible technical direction over time."
+            />
+            <ExperienceSection experience={portfolioData.experience} />
+            <SectionTransition
+              step="How To Reach Me"
+              title="The final step is simple: if the direction and mindset resonate, there is an easy path to start a conversation."
+            />
+            <ContactSection profile={portfolioData.profile} contact={portfolioData.contact} />
+          </main>
+
+          <SiteFooter profile={portfolioData.profile} footer={portfolioData.footer} />
+        </div>
+      </>
+    </MotionConfig>
   );
 }

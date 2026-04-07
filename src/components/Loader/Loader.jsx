@@ -2,8 +2,12 @@ import { useEffect, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import './Loader.css';
 
+const MotionDiv = motion.div;
+const MotionSpan = motion.span;
+const MotionHeading = motion.h2;
+
 export default function Loader() {
-    const [phase, setPhase] = useState(0); // 0 = rings, 1 = name, 2 = hidden
+    const [phase, setPhase] = useState(0);
 
     useEffect(() => {
         const t1 = setTimeout(() => setPhase(1), 800);
@@ -14,14 +18,13 @@ export default function Loader() {
     return (
         <AnimatePresence>
             {phase < 2 && (
-                <motion.div
+                <MotionDiv
                     className="loader"
                     exit={{ opacity: 0, scale: 1.05 }}
                     transition={{ duration: 0.6, ease: 'easeInOut' }}
                 >
                     <div className="loader__inner">
-                        {/* Rings */}
-                        <motion.div
+                        <MotionDiv
                             className="loader__rings"
                             animate={{ opacity: phase === 0 ? 1 : 0, scale: phase === 0 ? 1 : 0.5 }}
                             transition={{ duration: 0.4 }}
@@ -29,11 +32,10 @@ export default function Loader() {
                             <div className="loader__ring"></div>
                             <div className="loader__ring"></div>
                             <div className="loader__ring"></div>
-                            <span className="loader__text">INITIALIZING</span>
-                        </motion.div>
+                            <span className="loader__text">Loading Portfolio</span>
+                        </MotionDiv>
 
-                        {/* Name reveal */}
-                        <motion.div
+                        <MotionDiv
                             className="loader__name-wrap"
                             initial={{ opacity: 0, y: 20 }}
                             animate={{ opacity: phase >= 1 ? 1 : 0, y: phase >= 1 ? 0 : 20 }}
@@ -41,7 +43,7 @@ export default function Loader() {
                         >
                             <h1 className="loader__name">
                                 {'ARYAN'.split('').map((ch, i) => (
-                                    <motion.span
+                                    <MotionSpan
                                         key={i}
                                         className="loader__char"
                                         initial={{ opacity: 0, y: 30 }}
@@ -49,26 +51,26 @@ export default function Loader() {
                                         transition={{ delay: i * 0.08, duration: 0.4 }}
                                     >
                                         {ch}
-                                    </motion.span>
+                                    </MotionSpan>
                                 ))}
                             </h1>
-                            <motion.h2
+                            <MotionHeading
                                 className="loader__surname"
                                 initial={{ opacity: 0, letterSpacing: '20px' }}
                                 animate={phase >= 1 ? { opacity: 1, letterSpacing: '12px' } : {}}
                                 transition={{ delay: 0.5, duration: 0.6 }}
                             >
                                 BOKOLIA
-                            </motion.h2>
-                            <motion.div
+                            </MotionHeading>
+                            <MotionDiv
                                 className="loader__line"
                                 initial={{ scaleX: 0 }}
                                 animate={phase >= 1 ? { scaleX: 1 } : {}}
                                 transition={{ delay: 0.7, duration: 0.5 }}
                             />
-                        </motion.div>
+                        </MotionDiv>
                     </div>
-                </motion.div>
+                </MotionDiv>
             )}
         </AnimatePresence>
     );

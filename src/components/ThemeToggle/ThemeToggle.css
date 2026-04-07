@@ -1,92 +1,93 @@
 .theme-toggle {
-    position: relative;
-    z-index: 1001;
-    padding: 0;
-    background: none;
-    border: none;
-    cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.65rem;
+  min-height: 2.6rem;
+  padding: 0.35rem 0.5rem 0.35rem 0.8rem;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: var(--surface);
+  color: var(--ink-soft);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.04);
+  transition:
+    transform var(--transition),
+    border-color var(--transition),
+    background-color var(--transition),
+    color var(--transition),
+    box-shadow var(--transition);
 }
 
-.toggle__track {
-    position: relative;
-    width: 52px;
-    height: 28px;
-    border-radius: 100px;
-    background: linear-gradient(135deg, #0a0a2e, #1a1a3e);
-    border: 1px solid rgba(0, 245, 255, 0.2);
-    transition: background 0.5s ease, border-color 0.5s ease;
-    overflow: hidden;
+.theme-toggle:hover {
+  transform: translateY(-1px);
+  border-color: var(--line-strong);
+  box-shadow:
+    0 12px 28px rgba(0, 0, 0, 0.2),
+    inset 0 1px 0 rgba(255, 255, 255, 0.05);
 }
 
-.toggle__track--light {
-    background: linear-gradient(135deg, #87CEEB, #E0F0FF);
-    border-color: rgba(255, 180, 50, 0.3);
+.theme-toggle__label {
+  font-family: var(--font-mono);
+  font-size: 0.64rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  transition: color var(--transition), opacity var(--transition);
 }
 
-.toggle__thumb {
-    position: absolute;
-    top: 2px;
-    left: 2px;
-    width: 22px;
-    height: 22px;
-    border-radius: 50%;
-    background: linear-gradient(135deg, var(--cyan), var(--violet));
-    box-shadow: 0 0 12px rgba(0, 245, 255, 0.4);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1), background 0.4s, box-shadow 0.4s;
+.theme-toggle__track {
+  position: relative;
+  width: 2.9rem;
+  height: 1.6rem;
+  border-radius: 999px;
+  background: linear-gradient(135deg, var(--surface-strong), var(--surface-muted));
+  border: 1px solid var(--line);
+  overflow: hidden;
 }
 
-.toggle__track--light .toggle__thumb {
-    transform: translateX(24px);
-    background: linear-gradient(135deg, #FFB432, #FF8C00);
-    box-shadow: 0 0 12px rgba(255, 180, 50, 0.5);
+.theme-toggle__thumb {
+  position: absolute;
+  top: 0.14rem;
+  left: 0.14rem;
+  width: 1.05rem;
+  height: 1.05rem;
+  border-radius: 999px;
+  background: linear-gradient(135deg, var(--accent) 0%, var(--accent-warm) 100%);
+  box-shadow:
+    0 8px 20px rgb(var(--accent-rgb) / 0.36),
+    inset 0 1px 0 rgba(255, 255, 255, 0.18);
+  transition:
+    transform 420ms cubic-bezier(0.22, 1, 0.36, 1),
+    background var(--transition),
+    box-shadow var(--transition);
 }
 
-.toggle__icon {
-    font-size: 12px;
-    line-height: 1;
+.theme-toggle--dark .theme-toggle__label--right,
+.theme-toggle--light .theme-toggle__label--left {
+  color: var(--ink);
 }
 
-.toggle__stars {
-    position: absolute;
-    inset: 0;
-    pointer-events: none;
-    transition: opacity 0.4s;
+.theme-toggle--dark .theme-toggle__label--left,
+.theme-toggle--light .theme-toggle__label--right {
+  opacity: 0.55;
 }
 
-.toggle__track--light .toggle__stars {
-    opacity: 0;
+.theme-toggle--light {
+  background: var(--surface-strong);
 }
 
-.toggle__star {
-    position: absolute;
-    left: var(--x);
-    top: var(--y);
-    width: var(--s);
-    height: var(--s);
-    border-radius: 50%;
-    background: #fff;
-    animation: starTwinkle 2s ease-in-out infinite;
+.theme-toggle--light .theme-toggle__track {
+  background: linear-gradient(135deg, var(--surface-muted), rgb(var(--accent-rgb) / 0.08));
 }
 
-.toggle__star:nth-child(2) {
-    animation-delay: 0.5s;
+.theme-toggle--light .theme-toggle__thumb {
+  transform: translateX(1.25rem);
 }
 
-.toggle__star:nth-child(3) {
-    animation-delay: 1s;
-}
+@media (max-width: 640px) {
+  .theme-toggle {
+    padding-inline: 0.6rem 0.45rem;
+  }
 
-@keyframes starTwinkle {
-
-    0%,
-    100% {
-        opacity: 0.3;
-    }
-
-    50% {
-        opacity: 1;
-    }
+  .theme-toggle__label {
+    display: none;
+  }
 }

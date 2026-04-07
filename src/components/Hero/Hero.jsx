@@ -1,126 +1,110 @@
-import { useEffect, useState, useRef, useCallback } from 'react';
+import { useEffect, useState } from 'react';
+import { portfolioData } from '../../data/portfolioData';
 import './Hero.css';
 
-const phrases = [
-    'Web Developer',
-    'CSE Sophomore @ NITK',
-    'Full-Stack Developer',
-    'Cyber Security Enthusiast',
-    'MERN Stack Developer',
-    'Agentic AI Enthusiast',
-    'Astrophile ✨',
-];
+const { hero, profile } = portfolioData;
 
 export default function Hero() {
-    const [typed, setTyped] = useState('');
-    const idx = useRef(0);
-    const charIdx = useRef(0);
-    const deleting = useRef(false);
+  const [roleIndex, setRoleIndex] = useState(0);
 
-    const tick = useCallback(() => {
-        const current = phrases[idx.current];
-        if (deleting.current) {
-            charIdx.current--;
-            setTyped(current.slice(0, charIdx.current));
-            if (charIdx.current <= 0) { deleting.current = false; idx.current = (idx.current + 1) % phrases.length; return 400; }
-            return 40;
-        } else {
-            charIdx.current++;
-            setTyped(current.slice(0, charIdx.current));
-            if (charIdx.current >= current.length) { deleting.current = true; return 2000; }
-            return 80;
-        }
-    }, []);
+  useEffect(() => {
+    const timer = window.setInterval(() => {
+      setRoleIndex((value) => (value + 1) % hero.rotatingRoles.length);
+    }, 2200);
 
-    useEffect(() => {
-        let timer;
-        const run = () => { const delay = tick(); timer = setTimeout(run, delay); };
-        timer = setTimeout(run, 1500);
-        return () => clearTimeout(timer);
-    }, [tick]);
+    return () => window.clearInterval(timer);
+  }, []);
 
-    /* Parallax on scroll */
-    const contentRef = useRef(null);
-    const indicatorRef = useRef(null);
-    useEffect(() => {
-        const onScroll = () => {
-            const y = window.scrollY;
-            if (y < window.innerHeight && contentRef.current) {
-                const f = y / window.innerHeight;
-                contentRef.current.style.opacity = 1 - f * 1.2;
-                contentRef.current.style.transform = `translateY(${y * 0.3}px) scale(${1 - f * 0.1})`;
-                if (indicatorRef.current) indicatorRef.current.style.opacity = 1 - f * 3;
-            }
-        };
-        window.addEventListener('scroll', onScroll);
-        return () => window.removeEventListener('scroll', onScroll);
-    }, []);
+  const scrollTo = (id) => document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
 
-    /* Count-up */
-    const statsRef = useRef(null);
-    const [counts, setCounts] = useState([0, 0, 0]);
-    useEffect(() => {
-        const el = statsRef.current;
-        if (!el) return;
-        const obs = new IntersectionObserver(([e]) => {
-            if (e.isIntersecting) {
-                const targets = [5, 10, 4];
-                targets.forEach((t, i) => {
-                    let c = 0;
-                    const iv = setInterval(() => { c++; setCounts(p => { const n = [...p]; n[i] = c; return n; }); if (c >= t) clearInterval(iv); }, 60);
-                });
-                obs.disconnect();
-            }
-        }, { threshold: 0.5 });
-        obs.observe(el);
-        return () => obs.disconnect();
-    }, []);
+  return (
+    <section id="hero" className="section hero">
+      <div className="container hero__layout">
+        <div className="hero__content">
+          <span className="eyebrow">{hero.eyebrow}</span>
 
-    const scrollTo = (id) => document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
+          <p className="hero__lead">Designing, building, and learning in public.</p>
 
-    return (
-        <section id="hero" className="section hero">
-            <div className="hero__grid" />
-            <div className="hero__content" ref={contentRef}>
-                <div className="hero__badge">[ SYSTEM ONLINE ]</div>
-                <p className="hero__greeting glitch" data-text="Hello, I'm">Hello, I'm</p>
-                <h1 className="hero__name">
-                    <span className="hero__name-line hero__name-line--1">Aryan</span>
-                    <span className="hero__name-line hero__name-line--2">Bokolia</span>
-                </h1>
-                <div className="hero__role">
-                    <span className="hero__prefix">&gt;&gt;</span>
-                    <span className="hero__typed">{typed}</span>
-                    <span className="hero__cursor">█</span>
-                </div>
-                <p className="hero__desc">
-                    CSE Sophomore at NITK Surathkal · Web Developer · DSA Enthusiast<br />
-                    Crafting digital experiences & solving real-world problems with code.
-                </p>
-                <div className="hero__cta">
-                    <button className="btn btn-primary" onClick={() => scrollTo('projects')}>
-                        <span className="btn-text">View My Work</span>
-                        <span className="btn-icon">→</span>
-                        <span className="btn-glow" />
-                    </button>
-                    <button className="btn btn-outline" onClick={() => scrollTo('contact')}>
-                        <span className="btn-text">Get In Touch</span>
-                        <span className="btn-icon">↗</span>
-                    </button>
-                    <a href="/Final_Resume.pdf" download className="btn btn-outline hero__resume-btn">
-                        <span className="btn-text">Download CV</span>
-                        <span className="btn-icon">📄</span>
-                    </a>
-                </div>
-                <div className="hero__stats" ref={statsRef}>
-                    <div className="stat"><span className="stat__num">{counts[0]}+</span><span className="stat__label">Projects</span></div>
-                    <div className="stat__div" />
-                    <div className="stat"><span className="stat__num">{counts[1]}+</span><span className="stat__label">Technologies</span></div>
-                    <div className="stat__div" />
-                    <div className="stat"><span className="stat__num">{counts[2]}+</span><span className="stat__label">Certifications</span></div>
-                </div>
+          <h1 className="hero__title">
+            {hero.titleLines.map((line) => (
+              <span key={line}>{line}</span>
+            ))}
+          </h1>
+
+          <div className="hero__rotator" aria-live="polite">
+            <span className="hero__rotator-label">Currently focused on</span>
+            <strong key={hero.rotatingRoles[roleIndex]} className="hero__rotator-value">
+              {hero.rotatingRoles[roleIndex]}
+            </strong>
+          </div>
+
+          <p className="hero__intro">{hero.intro}</p>
+          <p className="hero__summary">{hero.summary}</p>
+
+          <div className="hero__chips">
+            {hero.badges.map((badge) => (
+              <span key={badge} className="chip chip--mono">
+                {badge}
+              </span>
+            ))}
+          </div>
+
+          <div className="hero__actions">
+            <button type="button" className="btn btn-primary" onClick={() => scrollTo('projects')}>
+              View Projects
+            </button>
+            <button type="button" className="btn btn-secondary" onClick={() => scrollTo('contact')}>
+              Start a Conversation
+            </button>
+            <a href={profile.resumeUrl} download className="btn btn-secondary">
+              Download Resume
+            </a>
+          </div>
+
+          <div className="hero__stats">
+            {hero.stats.map((stat) => (
+              <div key={stat.label} className="hero__stat glass-card">
+                <strong>{stat.value}</strong>
+                <span>{stat.label}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <aside className="hero__panel glass-card">
+          <div className="hero__portrait">
+            <img src={profile.profileImage} alt={profile.name} />
+          </div>
+
+          <div className="hero__panel-copy">
+            <span className="section-tag">{hero.spotlight.label}</span>
+            <p>{hero.spotlight.text}</p>
+          </div>
+
+          <div className="hero__details">
+            <div>
+              <span>Role</span>
+              <strong>{profile.role}</strong>
             </div>
-            <div className="hero__scroll" ref={indicatorRef}><div className="hero__scroll-line" /><span>Scroll</span></div>
-        </section>
-    );
+            <div>
+              <span>Education</span>
+              <strong>{profile.secondaryRole}</strong>
+            </div>
+            <div>
+              <span>Location</span>
+              <strong>{profile.location}</strong>
+            </div>
+          </div>
+
+          <div className="hero__socials">
+            {profile.socials.slice(0, 2).map((social) => (
+              <a key={social.name} href={social.url} target="_blank" rel="noopener noreferrer">
+                {social.name}
+              </a>
+            ))}
+          </div>
+        </aside>
+      </div>
+    </section>
+  );
 }

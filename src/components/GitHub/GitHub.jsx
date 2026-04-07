@@ -1,36 +1,33 @@
-import { useEffect, useRef, useState } from 'react';
+import { portfolioData } from '../../data/portfolioData';
+import { useReveal } from '../../hooks/useReveal';
 import GitHubActivity from '../GitHubActivity/GitHubActivity';
 import './GitHub.css';
 
+const { profile } = portfolioData;
+
 export default function GitHub() {
-    const ref = useRef(null);
-    const [vis, setVis] = useState(false);
+  const { ref, visible } = useReveal(0.05);
 
-    useEffect(() => {
-        const obs = new IntersectionObserver(([e]) => { if (e.isIntersecting) setVis(true); }, { threshold: 0.05 });
-        if (ref.current) obs.observe(ref.current);
-        return () => obs.disconnect();
-    }, []);
+  return (
+    <section id="github" className="section" ref={ref}>
+      <div className="container">
+        <div className="section-header">
+          <span className="section-tag">GitHub</span>
+          <h2 className={`section-title reveal ${visible ? 'visible' : ''}`}>
+            Code history, recent repos, and <span className="accent">public proof.</span>
+          </h2>
+          <p className={`section-subtitle reveal ${visible ? 'visible' : ''}`}>
+            A live snapshot from GitHub so the portfolio is backed by current activity instead of
+            only static claims.
+          </p>
+        </div>
 
-    return (
-        <section id="github" className="section" ref={ref}>
-            <div className="container">
-                <div className="section-header">
-                    <span className="section-tag">&lt;github&gt;</span>
-                    <h2 className={`section-title ${vis ? 'reveal visible' : 'reveal'}`}>
-                        GitHub <span className="accent">Activity</span>
-                    </h2>
-                    <p className={`section-subtitle ${vis ? 'reveal visible' : 'reveal'}`}>
-                        My open-source contributions and latest projects
-                    </p>
-                </div>
+        <div className={`reveal ${visible ? 'visible' : ''}`}>
+          <GitHubActivity username={profile.githubUsername} />
+        </div>
 
-                <div className={vis ? 'reveal visible' : 'reveal'}>
-                    <GitHubActivity username="yoman12357" />
-                </div>
-
-                <span className="section-tag section-tag-close">&lt;/github&gt;</span>
-            </div>
-        </section>
-    );
+        <span className="section-endnote">Live data from GitHub keeps this section honest.</span>
+      </div>
+    </section>
+  );
 }

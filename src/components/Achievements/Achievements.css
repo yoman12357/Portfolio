@@ -1,150 +1,97 @@
-/* ─── Achievements Section ─── */
-
-.ach__highlights {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-    gap: 1rem;
-    margin-bottom: 3rem;
+.achievements__layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1.15fr) minmax(320px, 0.85fr);
+  gap: 1rem;
 }
 
-.ach__highlight {
-    display: flex;
-    align-items: flex-start;
-    gap: 1rem;
-    padding: 1.4rem;
+.achievements__grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
 }
 
-.ach__highlight-icon {
-    font-size: 2rem;
-    flex-shrink: 0;
-    filter: drop-shadow(0 0 8px rgba(0, 245, 255, 0.3));
+.achievements__card {
+  display: grid;
+  gap: 0.45rem;
+  padding: 1.3rem;
 }
 
-.ach__highlight h4 {
-    font-family: var(--font-display);
-    font-size: 0.9rem;
-    letter-spacing: 1px;
-    margin-bottom: 0.25rem;
+.achievements__card-index {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.08em;
+  color: var(--ink-muted);
 }
 
-.ach__highlight p {
-    font-size: 0.82rem;
-    color: var(--text-dim);
-    margin: 0;
-    line-height: 1.5;
+.achievements__card h3,
+.achievements__card p {
+  margin: 0;
 }
 
-/* Certifications title */
-.ach__certs-title {
-    font-family: var(--font-display);
-    font-size: 1.2rem;
-    letter-spacing: 1px;
-    margin-bottom: 1.5rem;
-    display: flex;
-    align-items: center;
-    gap: 0.6rem;
+.achievements__card p {
+  color: var(--ink-soft);
 }
 
-.ach__certs-icon {
-    font-size: 1.4rem;
+.achievements__certs {
+  display: grid;
+  align-content: start;
+  gap: 1rem;
+  padding: 1.4rem;
 }
 
-/* Certifications grid */
-.ach__certs {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 1rem;
+.achievements__certs h3 {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: clamp(1.8rem, 4vw, 2.8rem);
+  font-weight: 500;
+  letter-spacing: -0.04em;
 }
 
-.ach__cert {
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-    padding: 1.4rem;
-    position: relative;
-    overflow: hidden;
+.achievements__cert-list {
+  display: grid;
+  gap: 0.95rem;
 }
 
-.ach__cert::before {
-    content: '';
-    position: absolute;
-    left: 0;
-    top: 0;
-    bottom: 0;
-    width: 3px;
-    background: var(--cert-color, var(--cyan));
-    box-shadow: 0 0 12px var(--cert-color, var(--cyan));
+.achievements__cert-item {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 0.9rem;
+  padding-top: 0.95rem;
+  border-top: 1px dashed var(--line);
 }
 
-.ach__cert-icon {
-    font-size: 2rem;
-    width: 50px;
-    height: 50px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: 12px;
-    background: rgba(255, 255, 255, 0.03);
-    border: 1px solid rgba(255, 255, 255, 0.06);
-    flex-shrink: 0;
+.achievements__cert-item span {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  color: var(--ink-muted);
 }
 
-.ach__cert-info {
-    flex: 1;
+.achievements__cert-item div {
+  display: grid;
+  gap: 0.18rem;
 }
 
-.ach__cert-info h4 {
-    font-family: var(--font-display);
-    font-size: 0.82rem;
-    letter-spacing: 0.5px;
-    margin-bottom: 0.2rem;
-    line-height: 1.4;
+.achievements__cert-item strong,
+.achievements__cert-item small {
+  margin: 0;
 }
 
-.ach__cert-info p {
-    font-size: 0.75rem;
-    color: var(--text-muted);
-    margin: 0;
+.achievements__cert-item strong {
+  font-size: 0.98rem;
 }
 
-.ach__cert-badge {
-    font-family: var(--font-mono);
-    font-size: 0.6rem;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    padding: 0.3rem 0.7rem;
-    border: 1px solid;
-    border-radius: 100px;
-    flex-shrink: 0;
-    animation: badgeGlow 3s ease-in-out infinite;
+.achievements__cert-item small {
+  color: var(--ink-soft);
 }
 
-@keyframes badgeGlow {
-
-    0%,
-    100% {
-        box-shadow: 0 0 4px rgba(0, 245, 255, 0.1);
-    }
-
-    50% {
-        box-shadow: 0 0 12px rgba(0, 245, 255, 0.2);
-    }
+@media (max-width: 980px) {
+  .achievements__layout {
+    grid-template-columns: 1fr;
+  }
 }
 
-@media (max-width: 480px) {
-    .ach__highlights {
-        grid-template-columns: 1fr;
-    }
-
-    .ach__certs {
-        grid-template-columns: 1fr;
-    }
-
-    .ach__cert {
-        flex-wrap: wrap;
-    }
-
-    .ach__cert-badge {
-        margin-top: 0.5rem;
-    }
+@media (max-width: 760px) {
+  .achievements__grid {
+    grid-template-columns: 1fr;
+  }
 }

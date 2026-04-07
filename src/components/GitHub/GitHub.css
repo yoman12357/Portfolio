@@ -1,1 +1,4 @@
-/* GitHub section - minimal, inherits global styles */
+.github {
+  display: grid;
+  gap: 1rem;
+}
