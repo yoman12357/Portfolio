@@ -1,7 +1,8 @@
 import { motion as Motion } from 'framer-motion';
 import Reveal from './Reveal';
 import Magnetic from './Magnetic';
-import { MOTION_EASE } from './motion';
+import StaggerGroup from './StaggerGroup';
+import { createStaggerItem, MOTION_EASE } from './motion';
 
 export default function ContactSection({ profile, contact }) {
   return (
@@ -13,43 +14,69 @@ export default function ContactSection({ profile, contact }) {
           <div className="pointer-events-none absolute bottom-0 left-0 h-px w-full bg-gradient-to-r from-transparent via-accent/35 to-transparent" />
 
           <div className="relative grid gap-14 lg:grid-cols-[1.02fr_0.98fr] lg:items-end">
-            <div>
-              <span className="eyebrow">{contact.label}</span>
-              <h2 className="mt-7 max-w-[14ch] text-[clamp(3.35rem,7.6vw,6.25rem)] font-bold leading-[0.86] tracking-[-0.082em] text-foreground">
-                {contact.title}
-              </h2>
-              <p className="mt-8 max-w-[24rem] font-editorial text-[2.15rem] italic leading-tight text-accent sm:text-[2.75rem]">
-                {contact.cta}
-              </p>
-              <p className="mt-8 max-w-[34rem] text-[1.04rem] leading-[1.95] text-foreground-muted sm:text-[1.1rem]">
-                {contact.description}
-              </p>
-              <p className="mt-6 text-sm font-medium uppercase tracking-[0.24em] text-foreground-muted">
-                {contact.note}
-              </p>
+            <Reveal
+              className="min-w-0"
+              delay={0.06}
+              staggerChildren={0.08}
+              delayChildren={0.03}
+              distance={18}
+              duration={0.46}
+            >
+              <Reveal.Item>
+                <span className="eyebrow">{contact.label}</span>
+              </Reveal.Item>
 
-              <div className="mt-8 flex flex-wrap gap-4">
-                <Magnetic>
-                  <a href={`mailto:${profile.email}`} className="button-primary">
-                    Email Me <span aria-hidden="true">/</span>
-                  </a>
-                </Magnetic>
-                <Magnetic strength={8}>
-                  <a href={profile.resumeUrl} download className="button-secondary">
-                    Download Resume PDF <span aria-hidden="true">/</span>
-                  </a>
-                </Magnetic>
-              </div>
+              <Reveal.Item>
+                <h2 className="mt-7 max-w-[14ch] text-[clamp(3.35rem,7.6vw,6.25rem)] font-bold leading-[0.86] tracking-[-0.082em] text-foreground">
+                  {contact.title}
+                </h2>
+              </Reveal.Item>
 
-              <div className="mt-8 max-w-[35rem] rounded-[1.6rem] border border-accent/25 bg-accent/[0.06] px-5 py-4 text-sm leading-7 text-foreground-muted">
-                Open to internships, security-aware product teams, and technically ambitious collaborations where strong execution and reliable systems both matter.
-              </div>
-            </div>
+              <Reveal.Item>
+                <p className="mt-8 max-w-[24rem] font-editorial text-[2.15rem] italic leading-tight text-accent sm:text-[2.75rem]">
+                  {contact.cta}
+                </p>
+              </Reveal.Item>
 
-            <div className="grid gap-4">
+              <Reveal.Item>
+                <p className="mt-8 max-w-[34rem] text-[1.04rem] leading-[1.95] text-foreground-muted sm:text-[1.1rem]">
+                  {contact.description}
+                </p>
+              </Reveal.Item>
+
+              <Reveal.Item>
+                <p className="mt-6 text-sm font-medium uppercase tracking-[0.24em] text-foreground-muted">
+                  {contact.note}
+                </p>
+              </Reveal.Item>
+
+              <Reveal.Item>
+                <div className="mt-8 flex flex-wrap gap-4">
+                  <Magnetic>
+                    <a href={`mailto:${profile.email}`} className="button-primary">
+                      Email Me <span aria-hidden="true">/</span>
+                    </a>
+                  </Magnetic>
+                  <Magnetic strength={8}>
+                    <a href={profile.resumeUrl} download className="button-secondary">
+                      Download Resume PDF <span aria-hidden="true">/</span>
+                    </a>
+                  </Magnetic>
+                </div>
+              </Reveal.Item>
+
+              <Reveal.Item>
+                <div className="mt-8 max-w-[35rem] rounded-[1.6rem] border border-accent/25 bg-accent/[0.06] px-5 py-4 text-sm leading-7 text-foreground-muted">
+                  Open to internships, security-aware product teams, and technically ambitious collaborations where strong execution and reliable systems both matter.
+                </div>
+              </Reveal.Item>
+            </Reveal>
+
+            <StaggerGroup className="grid gap-4" stagger={0.08} delayChildren={0.14}>
               {contact.links.map((link, index) => (
                 <Motion.a
                   key={link.label}
+                  variants={createStaggerItem(18, 0.44)}
                   href={link.href}
                   target={link.href.startsWith('http') ? '_blank' : undefined}
                   rel={link.href.startsWith('http') ? 'noreferrer' : undefined}
@@ -93,7 +120,7 @@ export default function ContactSection({ profile, contact }) {
                   </p>
                 </Motion.a>
               ))}
-            </div>
+            </StaggerGroup>
           </div>
         </Reveal>
       </div>
