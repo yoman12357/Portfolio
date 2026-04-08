@@ -4,7 +4,7 @@ export const portfolioData = {
     initials: 'AB',
     role: 'Developer building secure, scalable, and intelligent digital systems',
     secondaryRole: 'CSE Sophomore @ NITK Surathkal / Web + Cybersecurity',
-    location: 'Delhi / Surathkal, India',
+    location: 'Delhi, India',
     email: 'aryanbokolia34@gmail.com',
     phone: '+91 7982212773',
     githubUsername: 'yoman12357',
@@ -93,7 +93,7 @@ export const portfolioData = {
     ],
     watermark: 'SECURE',
     facts: [
-      { label: 'Based in', value: 'Delhi / Surathkal, India' },
+      { label: 'Based in', value: 'Delhi, India' },
       { label: 'Core lens', value: 'Development quality with cybersecurity awareness' },
     ],
     strengths: [
@@ -197,10 +197,18 @@ export const portfolioData = {
       {
         index: '01',
         name: 'Darknet Routing Project',
+        summary:
+          'Secure routing prototype for privacy-focused darknet environments with optimized path selection and reliable transmission logic.',
         description:
           'Designed and implemented a secure routing system for darknet environments, focusing on privacy, efficiency, and optimized path selection using network-based algorithms. Emphasized secure data transmission and routing reliability.',
         detail:
           'Built as a security-oriented systems project, it reflects my interest in privacy-aware architectures, routing logic, and dependable communication across sensitive network environments.',
+        thumbnail: {
+          eyebrow: 'Privacy Routing',
+          title: 'Secure Path Selection',
+          meta: 'Tor-aware control with Python orchestration',
+          tags: ['Python', 'Tor', 'Routing'],
+        },
         caseStudy: {
           problem:
             'Privacy-focused routing environments still need dependable path selection and safe transmission without exposing sensitive traffic behavior.',
@@ -219,8 +227,16 @@ export const portfolioData = {
       {
         index: '02',
         name: 'Aeronitk Website',
+        summary:
+          'Responsive club website designed for performance, accessibility, and scalable frontend delivery.',
         description:
           'Developed a fully responsive and modern website with a focus on performance, accessibility, and clean UI/UX design. Implemented scalable frontend architecture and optimized user interaction flows.',
+        thumbnail: {
+          eyebrow: 'Frontend System',
+          title: 'Responsive Team Platform',
+          meta: 'Modern club presence with cleaner information flow',
+          tags: ['React', 'Vercel', 'UI'],
+        },
         caseStudy: {
           problem:
             'The team needed a modern web presence that could present projects, achievements, and updates without feeling outdated or difficult to navigate.',
@@ -238,8 +254,16 @@ export const portfolioData = {
       {
         index: '03',
         name: 'Data Communication Project',
+        summary:
+          'Protocol-focused systems prototype exploring communication flow, transmission models, and secure network behavior.',
         description:
           'Built a project demonstrating core concepts of data communication, including transmission models, protocols, and network behavior. Focused on secure and efficient communication across systems.',
+        thumbnail: {
+          eyebrow: 'Network Prototype',
+          title: 'Protocol Flow Visuals',
+          meta: 'Communication models mapped through system behavior',
+          tags: ['Protocols', 'Systems', 'Networks'],
+        },
         caseStudy: {
           problem:
             'The project needed to clearly demonstrate how protocols, transmission models, and network behavior interact in real communication systems.',
@@ -257,8 +281,16 @@ export const portfolioData = {
       {
         index: '04',
         name: 'FinSight',
+        summary:
+          'Financial insights interface built to make dense data easier to analyze and act on.',
         description:
           'Developed a financial insights platform to analyze and visualize financial data effectively, focusing on performance and intuitive user experience.',
+        thumbnail: {
+          eyebrow: 'Data Interface',
+          title: 'Readable Financial Signals',
+          meta: 'Clearer hierarchy for high-density information',
+          tags: ['React', 'Data UI', 'Frontend'],
+        },
         caseStudy: {
           problem:
             'Financial data is often dense and difficult to interpret quickly, especially when clarity and trust both matter.',
@@ -276,8 +308,16 @@ export const portfolioData = {
       {
         index: '05',
         name: 'Identity Guard',
+        summary:
+          'Identity protection concept centered on authentication, privacy-aware handling, and secure data structure.',
         description:
           'Designed a system focused on protecting user identity and sensitive data through secure authentication and structured data handling, emphasizing privacy and security.',
+        thumbnail: {
+          eyebrow: 'Identity Security',
+          title: 'Authentication Layers',
+          meta: 'Privacy-first handling for sensitive user data',
+          tags: ['Privacy', 'Auth', 'Security'],
+        },
         caseStudy: {
           problem:
             'Users need clearer ways to understand identity exposure and protect sensitive personal data across digital systems.',
