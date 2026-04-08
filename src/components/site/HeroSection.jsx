@@ -55,7 +55,7 @@ export default function HeroSection({ profile, hero }) {
             <Motion.div variants={heroItem}>
               <div className="mt-10 flex flex-wrap gap-3.5">
                 <Magnetic>
-                  <a href="#projects" className="button-primary">
+                  <a href="#projects" className="button-primary hero-primary-cta">
                     View Projects <span aria-hidden="true">/</span>
                   </a>
                 </Magnetic>

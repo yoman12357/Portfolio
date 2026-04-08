@@ -33,7 +33,7 @@ export default function App() {
           Skip to content
         </a>
 
-        <div className="relative min-h-screen overflow-x-clip bg-background text-foreground transition-colors duration-500">
+        <div className="relative min-h-screen overflow-x-clip bg-background text-foreground transition-colors duration-300 ease-in-out">
           <div className="ambient-orb ambient-orb--one" />
           <div className="ambient-orb ambient-orb--two" />
           <div className="ambient-orb ambient-orb--three" />

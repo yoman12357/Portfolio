@@ -87,7 +87,7 @@ export default function SiteHeader({ theme, onToggleTheme, navigation, profile }
             backdropFilter: scrolled ? 'blur(24px)' : 'blur(16px)',
           }}
           transition={{ duration: 0.38, ease: MOTION_EASE }}
-          className={`surface-panel flex items-center justify-between gap-2 rounded-full px-3 py-2.5 transition-all duration-300 sm:gap-4 sm:px-5 sm:py-3 ${
+          className={`nav-glass flex items-center justify-between gap-2 rounded-full px-3 py-2.5 transition-all duration-300 sm:gap-4 sm:px-5 sm:py-3 ${
             scrolled ? 'shadow-[var(--theme-shadow-lg)] backdrop-blur-xl' : ''
           }`}
         >
@@ -164,7 +164,7 @@ export default function SiteHeader({ theme, onToggleTheme, navigation, profile }
               initial={{ opacity: 0, y: -12 }}
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -12 }}
-              className="surface-panel mt-3 rounded-[2rem] p-4 lg:hidden"
+              className="nav-glass mt-3 rounded-[2rem] p-4 lg:hidden"
               id="mobile-navigation"
             >
               <nav className="flex flex-col gap-2">
