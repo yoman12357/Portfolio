@@ -1,9 +1,9 @@
 import { motion as Motion, useMotionValue, useReducedMotion, useSpring } from 'framer-motion';
 import { useEffect, useRef, useState } from 'react';
 
-const INTERACTION_QUERY = '(hover: hover) and (pointer: fine) and (min-width: 768px)';
+const INTERACTION_QUERY = '(hover: hover) and (pointer: fine) and (min-width: 1024px)';
 
-export default function Magnetic({ children, className = '', strength = 10 }) {
+export default function Magnetic({ children, className = '', strength = 7 }) {
   const elementRef = useRef(null);
   const prefersReducedMotion = useReducedMotion();
   const [enabled, setEnabled] = useState(false);
@@ -12,10 +12,10 @@ export default function Magnetic({ children, className = '', strength = 10 }) {
   const y = useMotionValue(0);
   const scale = useMotionValue(1);
 
-  const springConfig = { stiffness: 240, damping: 24, mass: 0.45 };
+  const springConfig = { stiffness: 220, damping: 24, mass: 0.48 };
   const springX = useSpring(x, springConfig);
   const springY = useSpring(y, springConfig);
-  const springScale = useSpring(scale, { stiffness: 220, damping: 20, mass: 0.4 });
+  const springScale = useSpring(scale, { stiffness: 200, damping: 22, mass: 0.42 });
 
   useEffect(() => {
     if (typeof window === 'undefined') {
@@ -40,11 +40,11 @@ export default function Magnetic({ children, className = '', strength = 10 }) {
   };
 
   const setPressScale = () => {
-    scale.set(isInteractive ? 0.992 : 0.985);
+    scale.set(isInteractive ? 0.996 : 0.99);
   };
 
   const setRestingScale = () => {
-    scale.set(isInteractive ? 1.015 : 1);
+    scale.set(isInteractive ? 1.008 : 1);
   };
 
   const handleMouseMove = (event) => {
@@ -58,7 +58,7 @@ export default function Magnetic({ children, className = '', strength = 10 }) {
 
     x.set((offsetX / bounds.width) * strength * 2);
     y.set((offsetY / bounds.height) * strength * 2);
-    scale.set(1.015);
+    scale.set(1.008);
   };
 
   return (
@@ -69,7 +69,7 @@ export default function Magnetic({ children, className = '', strength = 10 }) {
       onMouseMove={handleMouseMove}
       onMouseEnter={() => {
         if (isInteractive) {
-          scale.set(1.015);
+          scale.set(1.008);
         }
       }}
       onMouseLeave={resetPosition}

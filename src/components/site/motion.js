@@ -1,35 +1,22 @@
-export const MOTION_EASE = [0.22, 1, 0.36, 1];
+export {
+  MOTION_EASE,
+  MOTION_DURATION,
+  MOTION_DISTANCE,
+  fadeIn,
+  fadeUp,
+  scaleSoft,
+} from '../../animations/variants';
 
-export function createRevealUp(distance = 22) {
-  return {
-    hidden: { opacity: 0, y: distance },
-    show: { opacity: 1, y: 0 },
-  };
+import { fadeUp, staggerContainer } from '../../animations/variants';
+
+export function createRevealUp(distance = 28, duration) {
+  return fadeUp({ distance, duration });
 }
 
-export function createStaggerContainer(staggerChildren = 0.08, delayChildren = 0) {
-  return {
-    hidden: { opacity: 1 },
-    show: {
-      opacity: 1,
-      transition: {
-        staggerChildren,
-        delayChildren,
-      },
-    },
-  };
+export function createStaggerContainer(staggerChildren = 0.08, delayChildren = 0, delay = 0) {
+  return staggerContainer({ staggerChildren, delayChildren, delay });
 }
 
-export function createStaggerItem(distance = 20, duration = 0.48) {
-  return {
-    hidden: { opacity: 0, y: distance },
-    show: {
-      opacity: 1,
-      y: 0,
-      transition: {
-        duration,
-        ease: MOTION_EASE,
-      },
-    },
-  };
+export function createStaggerItem(distance = 28, duration) {
+  return fadeUp({ distance, duration });
 }

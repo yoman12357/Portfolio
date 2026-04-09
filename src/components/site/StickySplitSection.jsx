@@ -1,4 +1,6 @@
-export default function StickySplitSection({
+import { memo } from 'react';
+
+function StickySplitSection({
   leftContent,
   rightContent,
   className = '',
@@ -8,7 +10,7 @@ export default function StickySplitSection({
   stickyTopClassName = 'lg:top-28',
 }) {
   return (
-    <div className={`grid items-start gap-10 lg:gap-14 ${columnsClassName} ${className}`}>
+    <div className={`grid items-start gap-8 sm:gap-10 lg:gap-14 ${columnsClassName} ${className}`}>
       <div className={`min-w-0 lg:min-h-[calc(100vh-8rem)] ${leftClassName}`}>
         <div className={`lg:sticky ${stickyTopClassName}`}>{leftContent}</div>
       </div>
@@ -17,3 +19,5 @@ export default function StickySplitSection({
     </div>
   );
 }
+
+export default memo(StickySplitSection);

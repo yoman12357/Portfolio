@@ -1,41 +1,40 @@
+import { memo } from 'react';
 import Reveal from './Reveal';
+import TextReveal from './TextReveal';
 
-export default function SectionHeading({ label, title, description, centered = false }) {
+function SectionHeading({ label, title, description, centered = false }) {
   return (
-    <Reveal
-      className={centered ? 'mx-auto max-w-[46rem] text-center' : 'max-w-[46rem]'}
-      staggerChildren={0.08}
-      delayChildren={0.03}
-      distance={18}
-      duration={0.46}
-    >
-      <Reveal.Item>
+    <div className={centered ? 'mx-auto max-w-[43rem] text-center' : 'max-w-[43rem]'}>
+      <Reveal distance={20} duration={0.58}>
         <div className={`section-kicker ${centered ? 'justify-center' : ''}`}>
           <span className="eyebrow">{label}</span>
         </div>
-      </Reveal.Item>
+      </Reveal>
 
-      <Reveal.Item>
-        <h2
-          className={`mt-8 max-w-[15ch] text-[clamp(3.6rem,8vw,6.65rem)] font-bold leading-[0.86] tracking-[-0.086em] text-foreground ${
-            centered ? 'mx-auto' : ''
-          }`}
-        >
-          {title}
-        </h2>
-      </Reveal.Item>
+      <TextReveal
+        as="h2"
+        text={title}
+        split="words"
+        delayChildren={0.06}
+        stagger={0.045}
+        className={`mt-6 max-w-[16ch] text-[clamp(2.35rem,9vw,5.35rem)] font-bold leading-[0.92] tracking-[-0.06em] text-foreground ${
+          centered ? 'mx-auto' : ''
+        }`}
+      />
 
       {description ? (
-        <Reveal.Item>
+        <Reveal delay={0.12} distance={20} duration={0.58}>
           <p
-            className={`mt-8 max-w-[34rem] text-[1.03rem] leading-[1.95] text-foreground-muted sm:text-[1.1rem] ${
+            className={`mt-6 max-w-[30rem] text-[0.98rem] leading-[1.8] text-foreground-muted sm:mt-7 sm:text-[1.06rem] ${
               centered ? 'mx-auto' : ''
             }`}
           >
             {description}
           </p>
-        </Reveal.Item>
+        </Reveal>
       ) : null}
-    </Reveal>
+    </div>
   );
 }
+
+export default memo(SectionHeading);

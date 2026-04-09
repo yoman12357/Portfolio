@@ -10,7 +10,7 @@ export default function ThemeToggle({ theme, onToggle }) {
       onClick={onToggle}
       whileHover={{ scale: 1.012 }}
       whileTap={{ scale: 0.975 }}
-      className="relative inline-grid h-10 w-[6.85rem] grid-cols-2 items-center rounded-full border border-border bg-background/78 p-1 text-[0.65rem] font-semibold tracking-[0.16em] text-foreground shadow-[var(--theme-shadow)] backdrop-blur sm:h-11 sm:w-[8.75rem] sm:text-xs sm:tracking-[0.18em]"
+      className="relative inline-grid h-10 w-[6.85rem] grid-cols-2 items-center rounded-full border border-border bg-background/78 p-1 text-[0.65rem] font-semibold tracking-[0.16em] text-foreground shadow-[var(--theme-shadow)] backdrop-blur max-[360px]:w-[6.45rem] sm:h-11 sm:w-[8.75rem] sm:text-xs sm:tracking-[0.18em]"
       aria-label={`Switch to ${isDark ? 'light' : 'dark'} mode`}
       title={`Switch to ${isDark ? 'light' : 'dark'} mode`}
       aria-pressed={isDark}

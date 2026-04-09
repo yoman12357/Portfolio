@@ -1,9 +1,28 @@
 export const portfolioData = {
+  site: {
+    title: 'Aryan Bokolia | Cybersecurity-Focused Full-Stack Developer',
+    siteName: 'Aryan Bokolia Portfolio',
+    description:
+      'Portfolio of Aryan Bokolia, a cybersecurity-focused full-stack developer building secure web products, scalable systems, and polished digital experiences.',
+    keywords: [
+      'Aryan Bokolia',
+      'Cybersecurity-focused developer',
+      'Full-stack developer',
+      'Frontend developer',
+      'React portfolio',
+      'Secure systems',
+      'Web development',
+      'Software engineering internship',
+      'NITK portfolio',
+    ],
+    author: 'Aryan Bokolia',
+    defaultImage: '/Profile.webp',
+  },
   profile: {
     name: 'Aryan Bokolia',
     initials: 'AB',
-    role: 'Developer building secure, scalable, and intelligent digital systems',
-    secondaryRole: 'CSE Sophomore @ NITK Surathkal / Web + Cybersecurity',
+    role: 'Cybersecurity-Focused Full-Stack Developer',
+    secondaryRole: 'Seeking Software Engineering / Frontend Internship Roles',
     location: 'Delhi, India',
     email: 'aryanbokolia34@gmail.com',
     phone: '+91 7982212773',
@@ -12,7 +31,9 @@ export const portfolioData = {
     linkedinUrl: 'https://www.linkedin.com/in/aryan-bokolia',
     instagramUrl: 'https://www.instagram.com/aryanbokolia_/',
     resumeUrl: '/Final_Resume.pdf',
-    profileImage: '/Profile.jpg',
+    profileImage: '/Profile.webp',
+    profileImageAvif: '/Profile.avif',
+    profileImageFallback: '/Profile.jpg',
   },
   navigation: [
     { id: 'hero', label: 'Home' },
@@ -24,12 +45,14 @@ export const portfolioData = {
     { id: 'contact', label: 'Contact' },
   ],
   hero: {
-    eyebrow: 'Developer / Cybersecurity / Systems',
+    eyebrow: 'Developer / Cybersecurity / Secure Systems',
     title: 'Aryan Bokolia',
-    subtitle: 'Building secure, scalable, and intelligent digital systems with a cybersecurity focus.',
+    subtitle: 'Cybersecurity-focused full-stack developer building secure web products and scalable systems.',
     description:
-      'I am a developer focused on full-stack development and cybersecurity, building digital systems that balance strong user experience, efficient architecture, and security-minded engineering.',
-    badges: ['Secure Web Systems', 'Networking & Data Communication', 'React + MERN'],
+      'CSE student at NITK seeking software engineering, frontend, and security-focused internship roles where product quality, performance, and reliable systems matter.',
+    whyMe:
+      'Strong fit for frontend, product engineering, and security-aware development roles that value clean execution and systems thinking.',
+    badges: ['Open to Internships', 'Secure Web Systems', 'Frontend + MERN'],
     callouts: [
       {
         label: 'Security mindset',
@@ -41,7 +64,7 @@ export const portfolioData = {
       },
       {
         label: 'Best fit',
-        value: 'Internships, product teams, or research-minded builds where strong execution and system thinking both matter.',
+        value: 'Software engineering, frontend, and security-focused internship roles where execution, product quality, and systems thinking all matter.',
       },
     ],
   },
@@ -111,35 +134,35 @@ export const portfolioData = {
       },
     ],
   },
-  securityMindset: {
-    label: 'Security Mindset',
-    title: 'Security-aware engineering is part of how I build, not an afterthought.',
+  securityFocus: {
+    label: 'Security Focus',
+    title: 'Security is part of my engineering approach, from identity to system behavior.',
     introduction:
-      'I approach development with a stronger focus on trust, resilience, and how systems behave beneath the interface. That perspective shapes both my technical decisions and the kinds of problems I enjoy solving.',
+      'I want my work to reflect stronger trust, safer defaults, and a clearer understanding of how applications behave across users, APIs, and networks.',
     items: [
       {
-        eyebrow: '01 / Design',
-        title: 'Secure system design thinking',
+        eyebrow: '01 / Identity',
+        title: 'Authentication systems',
         description:
-          'I think about trust boundaries, safer defaults, and how architecture choices influence resilience, privacy, and long-term system reliability.',
+          'I am interested in login flows, identity handling, session safety, and access control patterns that make products more trustworthy and resilient.',
       },
       {
-        eyebrow: '02 / Network',
-        title: 'Network-level understanding',
+        eyebrow: '02 / APIs',
+        title: 'Secure APIs',
         description:
-          'My interest in routing, protocols, and communication systems helps me reason more clearly about traffic flow, exposure, and system behavior.',
+          'I think about safer request handling, protected endpoints, validation, and how backend services should expose data without expanding unnecessary risk.',
       },
       {
-        eyebrow: '03 / Data',
-        title: 'Data protection awareness',
+        eyebrow: '03 / Privacy',
+        title: 'Privacy-aware design',
         description:
-          'I care about how sensitive information is handled, stored, and transmitted so software remains dependable and privacy-conscious by design.',
+          'I care about limiting exposure of sensitive data, designing with better defaults, and building products that respect user privacy by design.',
       },
       {
-        eyebrow: '04 / Identity',
-        title: 'Identity and authentication focus',
+        eyebrow: '04 / Networks',
+        title: 'Networking fundamentals',
         description:
-          'Authentication, identity handling, and access control are central to how I think about building secure products people can trust.',
+          'My interest in protocols, routing, and data communication helps me reason more clearly about traffic flow, system behavior, and communication security.',
       },
     ],
   },
@@ -189,6 +212,40 @@ export const portfolioData = {
       },
     ],
   },
+  currentlyLearning: {
+    label: 'Currently Learning',
+    title: 'Sharpening the systems and security layers behind modern web products.',
+    introduction:
+      'I am focusing on a small set of areas that directly strengthen my development work and long-term cybersecurity direction.',
+    highlights: [
+      {
+        eyebrow: 'Identity',
+        title: 'Authentication and access control',
+        description:
+          'Going deeper into login flows, session handling, authorization patterns, and identity-aware design for real web applications.',
+      },
+      {
+        eyebrow: 'Networks',
+        title: 'Networking fundamentals',
+        description:
+          'Studying protocols, routing behavior, data communication, and how system traffic decisions affect performance, trust, and resilience.',
+      },
+      {
+        eyebrow: 'APIs',
+        title: 'Secure backend communication',
+        description:
+          'Improving how I think about validation, protected endpoints, request handling, and safer API design across frontend and backend systems.',
+      },
+      {
+        eyebrow: 'Systems',
+        title: 'Reliable system design',
+        description:
+          'Building a stronger understanding of scalable architecture, service boundaries, and engineering decisions that make products dependable under growth.',
+      },
+    ],
+    note:
+      'This learning path is shaping the kind of engineer I want to become: someone who builds clean interfaces with stronger security and systems judgment underneath.',
+  },
   projects: {
     label: 'What I Built',
     title: 'Featured Projects',
@@ -198,11 +255,11 @@ export const portfolioData = {
         index: '01',
         name: 'Darknet Routing Project',
         summary:
-          'Secure routing prototype for privacy-focused darknet environments with optimized path selection and reliable transmission logic.',
+          'Secure routing prototype for privacy-sensitive networks with Python orchestration, route selection logic, and reliability-focused transmission controls.',
         description:
-          'Designed and implemented a secure routing system for darknet environments, focusing on privacy, efficiency, and optimized path selection using network-based algorithms. Emphasized secure data transmission and routing reliability.',
+          'Built a Python-based routing prototype for privacy-sensitive networks, combining Tor control, route evaluation, and behavioral monitoring. The system handled secure transmission flows more reliably and gave me hands-on experience with anonymity, routing tradeoffs, and network-level complexity.',
         detail:
-          'Built as a security-oriented systems project, it reflects my interest in privacy-aware architectures, routing logic, and dependable communication across sensitive network environments.',
+          'This project pushed me beyond frontend work into privacy engineering, path-selection logic, and the operational tradeoffs involved in secure communication systems.',
         thumbnail: {
           eyebrow: 'Privacy Routing',
           title: 'Secure Path Selection',
@@ -211,11 +268,11 @@ export const portfolioData = {
         },
         caseStudy: {
           problem:
-            'Privacy-focused routing environments still need dependable path selection and safe transmission without exposing sensitive traffic behavior.',
-          approach:
-            'Built a Python workflow around Tor control logic, metadata-aware monitoring, and algorithmic route selection to improve privacy and reliability.',
+            'Darknet environments require routing decisions that protect privacy without sacrificing reliability or transmission efficiency.',
+          solution:
+            'Built a Python-based routing workflow around Tor control, network-aware path evaluation, and safer transmission logic for more dependable route selection.',
           impact:
-            'Deepened my understanding of secure network design, routing tradeoffs, and how privacy and observability must be balanced in sensitive systems.',
+            'Delivered a working prototype that brought routing logic, Tor control, and monitoring into one flow, strengthening my understanding of privacy engineering and reliability tradeoffs.',
         },
         role: 'Security Research + Python Developer',
         stack: ['Python', 'Stem', 'Tor Control Port', 'Behavioral IDS'],
@@ -228,9 +285,9 @@ export const portfolioData = {
         index: '02',
         name: 'Aeronitk Website',
         summary:
-          'Responsive club website designed for performance, accessibility, and scalable frontend delivery.',
+          'Responsive team website with reusable sections, clearer information architecture, and faster content updates for a student engineering team.',
         description:
-          'Developed a fully responsive and modern website with a focus on performance, accessibility, and clean UI/UX design. Implemented scalable frontend architecture and optimized user interaction flows.',
+          'Developed the Team AeroNITK website with reusable React sections, responsive layouts, and cleaner information flow for projects, achievements, and updates. The result was a more maintainable frontend that improved content clarity and made team-facing updates easier to ship.',
         thumbnail: {
           eyebrow: 'Frontend System',
           title: 'Responsive Team Platform',
@@ -239,11 +296,11 @@ export const portfolioData = {
         },
         caseStudy: {
           problem:
-            'The team needed a modern web presence that could present projects, achievements, and updates without feeling outdated or difficult to navigate.',
-          approach:
-            'Built a responsive React interface with reusable sections, cleaner information architecture, and performance-minded UI patterns.',
+            'The team needed a stronger web presence to showcase work clearly without relying on an outdated or hard-to-navigate interface.',
+          solution:
+            'Built a responsive React website with reusable sections, cleaner information architecture, and accessibility-minded frontend patterns.',
           impact:
-            'Delivered a more credible digital showcase and strengthened my skills in production-style frontend architecture and accessibility.',
+            'Produced a live website the team can use as its public-facing platform while improving maintainability through reusable sections and cleaner frontend structure.',
         },
         role: 'Frontend Developer',
         stack: ['React', 'JavaScript', 'Vercel', 'Responsive UI'],
@@ -255,9 +312,9 @@ export const portfolioData = {
         index: '03',
         name: 'Data Communication Project',
         summary:
-          'Protocol-focused systems prototype exploring communication flow, transmission models, and secure network behavior.',
+          'Network communication prototype covering protocols, transmission flow, and secure data exchange through a more structured systems model.',
         description:
-          'Built a project demonstrating core concepts of data communication, including transmission models, protocols, and network behavior. Focused on secure and efficient communication across systems.',
+          'Built a systems-focused prototype to model transmission flow, protocol behavior, and communication reliability across networks. It translated abstract networking concepts into a clearer implementation and improved how I reason about secure communication design.',
         thumbnail: {
           eyebrow: 'Network Prototype',
           title: 'Protocol Flow Visuals',
@@ -266,11 +323,11 @@ export const portfolioData = {
         },
         caseStudy: {
           problem:
-            'The project needed to clearly demonstrate how protocols, transmission models, and network behavior interact in real communication systems.',
-          approach:
-            'Structured the prototype around communication flows, protocol handling, and system interaction to model secure and efficient transmission.',
+            'Understanding communication systems is difficult without a clear way to connect protocols, transmission models, and real network behavior.',
+          solution:
+            'Structured the prototype around protocol flow, system interaction, and transmission handling to demonstrate secure and efficient communication.',
           impact:
-            'Improved my grasp of data communication fundamentals and reinforced how security shapes reliable system design.',
+            'Turned core networking concepts into a working prototype, giving me a more practical grasp of protocol flow, transmission behavior, and communication reliability.',
         },
         role: 'Systems + Network Prototype Developer',
         stack: ['Python', 'eBPF/XDP', 'Mininet', 'Control APIs'],
@@ -282,9 +339,9 @@ export const portfolioData = {
         index: '04',
         name: 'FinSight',
         summary:
-          'Financial insights interface built to make dense data easier to analyze and act on.',
+          'Financial insights interface with clearer hierarchy, modular components, and responsive data views for faster interpretation.',
         description:
-          'Developed a financial insights platform to analyze and visualize financial data effectively, focusing on performance and intuitive user experience.',
+          'Built a frontend for exploring financial information through modular components, responsive layouts, and stronger visual hierarchy. The interface made dense data easier to scan and compare while reinforcing performance-aware UI decisions for content-heavy screens.',
         thumbnail: {
           eyebrow: 'Data Interface',
           title: 'Readable Financial Signals',
@@ -293,11 +350,11 @@ export const portfolioData = {
         },
         caseStudy: {
           problem:
-            'Financial data is often dense and difficult to interpret quickly, especially when clarity and trust both matter.',
-          approach:
-            'Designed a frontend experience with stronger hierarchy, readable data presentation, and performant interaction patterns.',
+            'Financial data can be overwhelming when interfaces do not prioritize clarity, hierarchy, and quick interpretation.',
+          solution:
+            'Built a responsive interface that organizes financial signals through cleaner layouts, stronger hierarchy, and performance-aware interactions.',
           impact:
-            'Learned how to shape information-heavy interfaces so usability, speed, and trust stay central to the product experience.',
+            'Improved the readability of data-heavy views by structuring them into reusable UI blocks, which strengthened both usability and frontend maintainability.',
         },
         role: 'Frontend Developer',
         stack: ['React', 'JavaScript', 'Vercel', 'UI Systems'],
@@ -309,9 +366,9 @@ export const portfolioData = {
         index: '05',
         name: 'Identity Guard',
         summary:
-          'Identity protection concept centered on authentication, privacy-aware handling, and secure data structure.',
+          'Identity protection concept focused on authentication flows, structured data handling, and privacy-aware user protection.',
         description:
-          'Designed a system focused on protecting user identity and sensitive data through secure authentication and structured data handling, emphasizing privacy and security.',
+          'Designed an identity-focused security concept around authentication, access control, and privacy-aware handling of sensitive user data. The project clarified how secure user flows should be structured and strengthened my thinking around trust, identity, and protection by design.',
         thumbnail: {
           eyebrow: 'Identity Security',
           title: 'Authentication Layers',
@@ -320,11 +377,11 @@ export const portfolioData = {
         },
         caseStudy: {
           problem:
-            'Users need clearer ways to understand identity exposure and protect sensitive personal data across digital systems.',
-          approach:
-            'Designed a security-focused workflow around authentication-aware handling, privacy-minded structure, and organized treatment of sensitive data.',
+            'Users face growing risk around identity exposure and need stronger safeguards for sensitive personal data in digital systems.',
+          solution:
+            'Designed a workflow centered on authentication, privacy-minded data handling, and structured identity protection across user-facing flows.',
           impact:
-            'Strengthened my thinking around identity protection, secure-by-design workflows, and building tools where privacy is part of the product itself.',
+            'Mapped authentication and privacy concerns into a concrete workflow, giving me a clearer foundation for building safer identity-aware products.',
         },
         role: 'Security Tooling Developer',
         stack: ['Python', 'OSINT', 'Privacy', 'Security'],
@@ -401,23 +458,50 @@ export const portfolioData = {
   },
   contact: {
     label: 'How To Reach Me',
-    title: 'Open to teams building secure products, polished interfaces, and serious systems.',
+    title: 'Available for software engineering, frontend, and security-focused internship opportunities.',
+    ctaText: "Let's work together.",
     cta: 'Let’s build something secure and impactful.',
     description:
-      'I am looking for internships, collaborations, and high-growth environments where frontend engineering, product quality, and cybersecurity-aware thinking all have room to matter.',
-    note: 'Email is the fastest way to reach me, and you can also connect through GitHub or LinkedIn.',
+      'I am looking for teams where I can contribute strong frontend execution, thoughtful product quality, and a growing cybersecurity mindset in real engineering work.',
+    note: 'The fastest way to reach me is by email. You can also review my work on GitHub, connect on LinkedIn, or preview my resume below.',
+    primaryActionLabel: 'Email Me',
+    secondaryActionLabel: 'View Resume',
+    highlight:
+      'Open to internships, security-aware product teams, and technically ambitious collaborations where strong execution and reliable systems both matter.',
     links: [
-      { label: 'Email', value: 'aryanbokolia34@gmail.com', href: 'mailto:aryanbokolia34@gmail.com' },
-      { label: 'GitHub', value: 'github.com/yoman12357', href: 'https://github.com/yoman12357' },
-      { label: 'LinkedIn', value: 'linkedin.com/in/aryan-bokolia', href: 'https://www.linkedin.com/in/aryan-bokolia' },
+      {
+        label: 'Email',
+        value: 'aryanbokolia34@gmail.com',
+        href: 'mailto:aryanbokolia34@gmail.com',
+        description: 'Best for direct outreach, interview conversations, and internship opportunities.',
+      },
+      {
+        label: 'GitHub',
+        value: 'github.com/yoman12357',
+        href: 'https://github.com/yoman12357',
+        description: 'Review projects, source code, and the technical direction behind my work.',
+      },
+      {
+        label: 'LinkedIn',
+        value: 'linkedin.com/in/aryan-bokolia',
+        href: 'https://www.linkedin.com/in/aryan-bokolia',
+        description: 'Connect professionally and view my profile in a recruiter-friendly format.',
+      },
+      {
+        label: 'Resume',
+        value: 'Preview resume',
+        href: '/Final_Resume.pdf',
+        description: 'Open my latest resume directly for a quick view of experience, projects, and skills.',
+      },
     ],
   },
   footer: {
     note: 'Built to present product-minded development, secure system curiosity, and a sharper technical identity in one place.',
     socials: [
+      { name: 'Email', url: 'mailto:aryanbokolia34@gmail.com' },
       { name: 'GitHub', url: 'https://github.com/yoman12357' },
       { name: 'LinkedIn', url: 'https://www.linkedin.com/in/aryan-bokolia' },
-      { name: 'Instagram', url: 'https://www.instagram.com/aryanbokolia_/' },
+      { name: 'Resume', url: '/Final_Resume.pdf' },
     ],
   },
 };

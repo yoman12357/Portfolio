@@ -1,9 +1,11 @@
+import { memo } from 'react';
 import { motion as Motion } from 'framer-motion';
 import Reveal from './Reveal';
 import StaggerGroup from './StaggerGroup';
-import { createStaggerItem, MOTION_EASE } from './motion';
+import TextReveal from './TextReveal';
+import { createStaggerItem } from './motion';
 
-export default function KeyHighlightsSection({ keyHighlights }) {
+function KeyHighlightsSection({ keyHighlights }) {
   return (
     <section id="highlights" className="pb-24 sm:pb-28">
       <div className="section-shell">
@@ -19,13 +21,17 @@ export default function KeyHighlightsSection({ keyHighlights }) {
           </Reveal.Item>
 
           <Reveal.Item>
-            <h2 className="mt-7 max-w-[15ch] text-[clamp(3rem,6.2vw,5rem)] font-bold leading-[0.88] tracking-[-0.08em] text-foreground">
-              {keyHighlights.title}
-            </h2>
+            <TextReveal
+              as="h2"
+              text={keyHighlights.title}
+              split="words"
+              stagger={0.045}
+              className="mt-7 max-w-[16ch] text-[clamp(2.7rem,5.4vw,4.3rem)] font-bold leading-[0.92] tracking-[-0.06em] text-foreground"
+            />
           </Reveal.Item>
 
           <Reveal.Item>
-            <p className="mt-7 max-w-[33rem] text-[1.03rem] leading-[1.9] text-foreground-muted sm:text-[1.1rem]">
+            <p className="mt-7 max-w-[31rem] text-[1rem] leading-[1.82] text-foreground-muted sm:text-[1.05rem]">
               {keyHighlights.description}
             </p>
           </Reveal.Item>
@@ -34,14 +40,12 @@ export default function KeyHighlightsSection({ keyHighlights }) {
         <StaggerGroup className="mt-14 grid gap-5 sm:grid-cols-2 xl:grid-cols-4" stagger={0.07}>
           {keyHighlights.items.map((item, index) => (
             <Motion.div key={item.label} variants={createStaggerItem(18, 0.46)} className="h-full">
-              <Motion.article
-                whileHover={{ y: -6, scale: 1.014 }}
-                transition={{ duration: 0.26, ease: MOTION_EASE }}
+              <article
                 className={`key-highlight-card interactive-outline h-full rounded-[1.9rem] px-5 py-6 ${
                   index === 1 ? 'xl:-translate-y-3' : index === 3 ? 'xl:translate-y-3' : ''
-                }`}
+                } transition-transform duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] hover:-translate-y-1`}
               >
-                <p className="text-[2.5rem] font-bold leading-none tracking-[-0.08em] text-foreground sm:text-[2.9rem]">
+                <p className="text-[2.3rem] font-bold leading-none tracking-[-0.06em] text-foreground sm:text-[2.7rem]">
                   {item.value}
                 </p>
                 <p className="mt-3 text-sm font-semibold uppercase tracking-[0.24em] text-foreground-muted">
@@ -50,7 +54,7 @@ export default function KeyHighlightsSection({ keyHighlights }) {
                 <p className="mt-5 max-w-[22rem] text-sm leading-6 text-foreground-muted">
                   {item.description}
                 </p>
-              </Motion.article>
+              </article>
             </Motion.div>
           ))}
         </StaggerGroup>
@@ -58,3 +62,5 @@ export default function KeyHighlightsSection({ keyHighlights }) {
     </section>
   );
 }
+
+export default memo(KeyHighlightsSection);

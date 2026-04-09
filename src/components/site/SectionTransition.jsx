@@ -1,6 +1,7 @@
+import { memo } from 'react';
 import Reveal from './Reveal';
 
-export default function SectionTransition({ step, title }) {
+function SectionTransition({ step, title }) {
   return (
     <div className="section-shell py-5 sm:py-6 lg:py-8">
       <Reveal className="section-transition-shell mx-auto max-w-4xl text-center">
@@ -13,3 +14,5 @@ export default function SectionTransition({ step, title }) {
     </div>
   );
 }
+
+export default memo(SectionTransition);

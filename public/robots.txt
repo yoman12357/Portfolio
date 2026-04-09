@@ -1,0 +1,5 @@
+# Generated from VITE_SITE_URL during build.
+User-agent: *
+Allow: /
+
+Sitemap: https://portfolio-seven-ruby-98.vercel.app/sitemap.xml

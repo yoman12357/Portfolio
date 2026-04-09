@@ -1,10 +1,10 @@
 import { AnimatePresence, motion as Motion } from 'framer-motion';
-import { useEffect, useMemo, useState } from 'react';
+import { useCallback, useEffect, useMemo, useState } from 'react';
 import ThemeToggle from './ThemeToggle';
 import Magnetic from './Magnetic';
 import { MOTION_EASE } from './motion';
 
-export default function SiteHeader({ theme, onToggleTheme, navigation, profile }) {
+export default function SiteHeader({ theme, onToggleTheme, navigation, profile, onOpenResume }) {
   const [activeId, setActiveId] = useState(navigation[0]?.id ?? 'hero');
   const [menuOpen, setMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
@@ -70,13 +70,13 @@ export default function SiteHeader({ theme, onToggleTheme, navigation, profile }
     return () => window.removeEventListener('keydown', handleKeyDown);
   }, [menuOpen]);
 
-  const scrollToSection = (id) => {
+  const scrollToSection = useCallback((id) => {
     document.getElementById(id)?.scrollIntoView({ behavior: 'smooth', block: 'start' });
     setMenuOpen(false);
-  };
+  }, []);
 
   return (
-    <header className="sticky top-0 z-50 pt-4 sm:pt-6">
+    <header className="sticky top-0 z-50 pt-3 sm:pt-6">
       <div className="section-shell">
         <Motion.div
           initial={{ opacity: 0, y: -18 }}
@@ -87,7 +87,7 @@ export default function SiteHeader({ theme, onToggleTheme, navigation, profile }
             backdropFilter: scrolled ? 'blur(24px)' : 'blur(16px)',
           }}
           transition={{ duration: 0.38, ease: MOTION_EASE }}
-          className={`nav-glass flex items-center justify-between gap-2 rounded-full px-3 py-2.5 transition-all duration-300 sm:gap-4 sm:px-5 sm:py-3 ${
+          className={`nav-glass flex items-center justify-between gap-2 rounded-[1.45rem] px-2.5 py-2 transition-all duration-300 sm:gap-4 sm:rounded-full sm:px-5 sm:py-3 ${
             scrolled ? 'shadow-[var(--theme-shadow-lg)] backdrop-blur-xl' : ''
           }`}
         >
@@ -97,12 +97,12 @@ export default function SiteHeader({ theme, onToggleTheme, navigation, profile }
               event.preventDefault();
               scrollToSection('hero');
             }}
-            className="group flex min-w-0 items-center gap-3"
+            className="group flex min-w-0 items-center gap-2.5 sm:gap-3"
           >
-            <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-foreground text-sm font-bold tracking-[0.18em] text-background transition-transform duration-300 group-hover:scale-105">
+            <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-foreground text-sm font-bold tracking-[0.18em] text-background transition-transform duration-300 group-hover:scale-[1.02] sm:h-11 sm:w-11">
               {profile.initials}
             </span>
-            <span className="min-w-0">
+            <span className="min-w-0 max-[420px]:hidden">
               <span className="block truncate font-display text-sm font-bold uppercase tracking-[0.2em] text-foreground">
                 {profile.name}
               </span>
@@ -120,10 +120,10 @@ export default function SiteHeader({ theme, onToggleTheme, navigation, profile }
                   scrollToSection(item.id);
                 }}
                 aria-current={activeId === item.id ? 'page' : undefined}
-                className={`rounded-full px-4 py-2 text-sm font-medium transition-transform duration-300 ${
+                className={`rounded-full px-4 py-2 text-sm font-medium transition-colors duration-300 ${
                   activeId === item.id
                     ? 'bg-accent text-accent-foreground shadow-[0_18px_40px_color-mix(in_srgb,var(--theme-accent)_22%,transparent)]'
-                    : 'text-foreground-muted hover:-translate-y-0.5 hover:bg-surface hover:text-foreground'
+                    : 'text-foreground-muted hover:bg-surface hover:text-foreground'
                 }`}
               >
                 {item.label}
@@ -131,13 +131,13 @@ export default function SiteHeader({ theme, onToggleTheme, navigation, profile }
             ))}
           </nav>
 
-          <div className="flex items-center gap-2 sm:gap-3">
+          <div className="flex min-w-0 items-center gap-2 sm:gap-3">
             <ThemeToggle theme={theme} onToggle={onToggleTheme} />
 
             <Magnetic strength={8}>
-              <a href={profile.resumeUrl} className="button-secondary hidden sm:inline-flex" download>
+              <button type="button" onClick={onOpenResume} className="button-secondary hidden sm:inline-flex">
                 Resume
-              </a>
+              </button>
             </Magnetic>
 
             <Motion.button
@@ -164,7 +164,7 @@ export default function SiteHeader({ theme, onToggleTheme, navigation, profile }
               initial={{ opacity: 0, y: -12 }}
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -12 }}
-              className="nav-glass mt-3 rounded-[2rem] p-4 lg:hidden"
+              className="nav-glass mt-2 rounded-[1.5rem] p-3 sm:mt-3 sm:rounded-[2rem] sm:p-4 lg:hidden"
               id="mobile-navigation"
             >
               <nav className="flex flex-col gap-2">
@@ -186,9 +186,16 @@ export default function SiteHeader({ theme, onToggleTheme, navigation, profile }
                 ))}
 
                 <Magnetic>
-                  <a href={profile.resumeUrl} className="button-primary mt-2" download>
-                    Download Resume
-                  </a>
+                  <button
+                    type="button"
+                    onClick={() => {
+                      setMenuOpen(false);
+                      onOpenResume();
+                    }}
+                    className="button-primary mt-2"
+                  >
+                    View Resume
+                  </button>
                 </Magnetic>
               </nav>
             </Motion.div>

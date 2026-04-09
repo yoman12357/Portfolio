@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useMemo, useState } from 'react';
 
 const THEME_KEY = 'portfolio-theme';
 
@@ -70,14 +70,17 @@ export function useTheme() {
     return () => mediaQuery.removeListener(handleChange);
   }, [hasManualPreference]);
 
-  const toggleTheme = () => {
+  const toggleTheme = useCallback(() => {
     setHasManualPreference(true);
     setTheme((currentTheme) => (currentTheme === 'dark' ? 'light' : 'dark'));
-  };
+  }, []);
 
-  return {
-    theme,
-    isDark: theme === 'dark',
-    toggleTheme,
-  };
+  return useMemo(
+    () => ({
+      theme,
+      isDark: theme === 'dark',
+      toggleTheme,
+    }),
+    [theme, toggleTheme]
+  );
 }

@@ -1,4 +1,66 @@
-export default function ProjectThumbnail({ project, className = '', compact = false }) {
+import { memo } from 'react';
+import { motion as Motion } from 'framer-motion';
+import { MOTION_EASE } from './motion';
+
+const thumbnailShellVariants = {
+  rest: {
+    scale: 1,
+    y: 0,
+  },
+  hover: {
+    scale: 1.008,
+    y: -2,
+    transition: {
+      duration: 0.28,
+      ease: MOTION_EASE,
+    },
+  },
+};
+
+const thumbnailScreenVariants = {
+  rest: {
+    scale: 1,
+    y: 0,
+  },
+  hover: {
+    scale: 1.018,
+    y: -2,
+    transition: {
+      duration: 0.28,
+      ease: MOTION_EASE,
+    },
+  },
+};
+
+const thumbnailOverlayVariants = {
+  rest: {
+    opacity: 0.05,
+  },
+  hover: {
+    opacity: 0.12,
+    transition: {
+      duration: 0.28,
+      ease: MOTION_EASE,
+    },
+  },
+};
+
+const thumbnailOrbitVariants = {
+  rest: {
+    scale: 1,
+    opacity: 0.52,
+  },
+  hover: {
+    scale: 1.04,
+    opacity: 0.62,
+    transition: {
+      duration: 0.32,
+      ease: MOTION_EASE,
+    },
+  },
+};
+
+function ProjectThumbnail({ project, className = '', compact = false }) {
   const thumbnail = project.thumbnail ?? {};
   const previewTitle = thumbnail.title ?? project.name;
   const previewEyebrow = thumbnail.eyebrow ?? project.role;
@@ -7,21 +69,26 @@ export default function ProjectThumbnail({ project, className = '', compact = fa
 
   if (project.thumbnailImage) {
     return (
-      <div className={`project-thumbnail-shell ${className}`}>
-        <img
+      <Motion.div variants={thumbnailShellVariants} className={`project-thumbnail-shell ${className}`}>
+        <Motion.div variants={thumbnailOverlayVariants} className="project-thumbnail-overlay" />
+        <Motion.img
           src={project.thumbnailImage}
           alt={`${project.name} preview`}
           loading="lazy"
-          className="h-full w-full object-cover"
+          decoding="async"
+          sizes="(min-width: 1536px) 24vw, (min-width: 768px) 42vw, 92vw"
+          variants={thumbnailScreenVariants}
+          className="project-thumbnail-image h-full w-full object-cover"
         />
-      </div>
+      </Motion.div>
     );
   }
 
   return (
-    <div className={`project-thumbnail-shell ${className}`}>
-      <div className="project-thumbnail-orbit project-thumbnail-orbit--one" />
-      <div className="project-thumbnail-orbit project-thumbnail-orbit--two" />
+    <Motion.div variants={thumbnailShellVariants} className={`project-thumbnail-shell ${className}`}>
+      <Motion.div variants={thumbnailOrbitVariants} className="project-thumbnail-orbit project-thumbnail-orbit--one" />
+      <Motion.div variants={thumbnailOrbitVariants} className="project-thumbnail-orbit project-thumbnail-orbit--two" />
+      <Motion.div variants={thumbnailOverlayVariants} className="project-thumbnail-overlay" />
 
       <div className="relative z-10 flex h-full flex-col justify-between gap-5 p-5 sm:p-6">
         <div className="flex items-start justify-between gap-4">
@@ -33,7 +100,7 @@ export default function ProjectThumbnail({ project, className = '', compact = fa
           </span>
         </div>
 
-        <div className="project-thumbnail-screen rounded-[1.45rem] p-4 sm:p-5">
+        <Motion.div variants={thumbnailScreenVariants} className="project-thumbnail-screen rounded-[1.45rem] p-4 sm:p-5">
           <div className="flex items-center gap-2">
             <span className="project-thumbnail-dot" />
             <span className="project-thumbnail-dot" />
@@ -54,7 +121,7 @@ export default function ProjectThumbnail({ project, className = '', compact = fa
             <div className="h-2 rounded-full bg-foreground/[0.1]" style={{ width: '82%' }} />
             <div className="h-2 rounded-full bg-foreground/[0.08]" style={{ width: '64%' }} />
           </div>
-        </div>
+        </Motion.div>
 
         <div className="flex flex-wrap gap-2">
           {previewTags.slice(0, 3).map((tag) => (
@@ -67,6 +134,8 @@ export default function ProjectThumbnail({ project, className = '', compact = fa
           ))}
         </div>
       </div>
-    </div>
+    </Motion.div>
   );
 }
+
+export default memo(ProjectThumbnail);
