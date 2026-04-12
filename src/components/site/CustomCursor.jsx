@@ -1,5 +1,6 @@
 import { motion as Motion, useMotionValue, useReducedMotion, useSpring } from 'framer-motion';
 import { useEffect, useRef, useState } from 'react';
+import { useMousePosition } from '../../hooks/useMousePosition';
 
 const INTERACTION_QUERY = '(hover: hover) and (pointer: fine) and (min-width: 768px)';
 
@@ -57,7 +58,20 @@ export default function CustomCursor() {
     }
 
     const mediaQuery = window.matchMedia(INTERACTION_QUERY);
-    const updateEnabled = () => setEnabled(mediaQuery.matches && !prefersReducedMotion);
+    const connection = navigator.connection || navigator.mozConnection || navigator.webkitConnection;
+    const saveDataEnabled = Boolean(connection?.saveData);
+    const lowBandwidth = typeof connection?.effectiveType === 'string' && /2g/.test(connection.effectiveType);
+    const deviceMemory = navigator.deviceMemory ?? 4;
+    const hardwareConcurrency = navigator.hardwareConcurrency ?? 4;
+    const updateEnabled = () =>
+      setEnabled(
+        mediaQuery.matches &&
+          !prefersReducedMotion &&
+          !saveDataEnabled &&
+          !lowBandwidth &&
+          hardwareConcurrency >= 6 &&
+          deviceMemory >= 4
+      );
 
     updateEnabled();
 
@@ -91,12 +105,23 @@ function CursorLayer() {
   const [pressed, setPressed] = useState(false);
   const variantRef = useRef('default');
   const visibleRef = useRef(false);
+  const { x, y } = useMousePosition();
 
   const pointerX = useMotionValue(-120);
   const pointerY = useMotionValue(-120);
 
   const glowX = useSpring(pointerX, { stiffness: 540, damping: 38, mass: 0.11 });
   const glowY = useSpring(pointerY, { stiffness: 540, damping: 38, mass: 0.11 });
+
+  useEffect(() => {
+    pointerX.set(x);
+    pointerY.set(y);
+
+    if ((x !== 0 || y !== 0) && !visibleRef.current) {
+      visibleRef.current = true;
+      setVisible(true);
+    }
+  }, [pointerX, pointerY, x, y]);
 
   useEffect(() => {
     const updateVariant = (target) => {
@@ -109,14 +134,6 @@ function CursorLayer() {
     };
 
     const handlePointerMove = (event) => {
-      pointerX.set(event.clientX);
-      pointerY.set(event.clientY);
-
-      if (!visibleRef.current) {
-        visibleRef.current = true;
-        setVisible(true);
-      }
-
       updateVariant(event.target);
     };
 
@@ -148,7 +165,7 @@ function CursorLayer() {
       window.removeEventListener('blur', handlePointerLeave);
       document.documentElement.removeEventListener('mouseleave', handlePointerLeave);
     };
-  }, [pointerX, pointerY]);
+  }, []);
 
   const activeVariant = CURSOR_VARIANTS[variant] ?? CURSOR_VARIANTS.default;
   const ringScale = pressed ? activeVariant.ringScale * 0.9 : activeVariant.ringScale;

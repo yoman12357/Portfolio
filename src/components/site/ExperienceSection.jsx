@@ -11,28 +11,7 @@ function ExperienceSection({ experience }) {
   return (
     <section id="experience" className="section-space">
       <div className="section-shell">
-        <StaggerGroup className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3 lg:gap-5" stagger={0.08}>
-          {experience.highlights.map((item, index) => (
-            <Motion.div key={item.label} variants={createStaggerItem(16, 0.42)}>
-              <div
-                className={`interactive-outline rounded-[1.95rem] px-5 py-6 ${
-                  index === 1
-                    ? 'border border-accent/30 bg-accent/[0.08] text-foreground shadow-[0_18px_42px_color-mix(in_srgb,var(--theme-accent)_12%,transparent)] lg:-translate-y-3'
-                    : 'surface-panel'
-                } transition-transform duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] hover:-translate-y-1`}
-              >
-                <p className={`text-3xl font-bold tracking-[-0.06em] ${index === 1 ? 'text-accent' : 'text-foreground'}`}>
-                  {item.value}
-                </p>
-                <p className="mt-2 text-sm uppercase tracking-[0.24em] text-foreground-muted">
-                  {item.label}
-                </p>
-              </div>
-            </Motion.div>
-          ))}
-        </StaggerGroup>
-
-        <div className="mt-14 sm:mt-16">
+        <div>
           <StickySplitSection
             leftContent={
               <div className="space-y-5 sm:space-y-6 lg:pr-6">
@@ -46,13 +25,13 @@ function ExperienceSection({ experience }) {
                   <div className="surface-panel-strong interactive-outline rounded-[1.9rem] p-5 sm:rounded-[2.1rem] sm:p-7">
                     <span className="eyebrow">Signals beyond projects</span>
                     <h3 className="mt-5 max-w-[15ch] text-[1.6rem] font-bold leading-[1] tracking-[-0.04em] text-foreground sm:text-[1.85rem]">
-                      Experience, credentials, and communities shaping my direction.
+                      Experience and credentials shaping my direction.
                     </h3>
                     <p className="mt-5 max-w-[24rem] text-[0.98rem] leading-[1.78] text-foreground-muted">
-                      The timeline on the right captures applied work, while these additional signals show where I am learning, contributing, and building technical depth.
+                      The timeline on the right captures applied work, while these supporting signals show where I am contributing and building technical depth.
                     </p>
 
-                    <div className="mt-6 grid gap-4">
+                    <div className="mt-6 grid gap-4 sm:grid-cols-2">
                       <div className="rounded-[1.45rem] border border-border bg-background/72 p-4">
                         <span className="text-[0.68rem] font-semibold uppercase tracking-[0.24em] text-foreground-muted">
                           Credentials
@@ -64,10 +43,10 @@ function ExperienceSection({ experience }) {
 
                       <div className="rounded-[1.45rem] border border-border bg-background/72 p-4">
                         <span className="text-[0.68rem] font-semibold uppercase tracking-[0.24em] text-foreground-muted">
-                          Associations
+                          Active Roles
                         </span>
                         <p className="mt-3 text-2xl font-bold tracking-[-0.05em] text-accent">
-                          {experience.associations.length.toString().padStart(2, '0')}
+                          {experience.timeline.filter((entry) => entry.type === 'Role').length.toString().padStart(2, '0')}
                         </p>
                       </div>
                     </div>
@@ -142,25 +121,6 @@ function ExperienceSection({ experience }) {
                             >
                               {credential}
                             </div>
-                          ))}
-                        </div>
-                      </div>
-                    </Reveal>
-
-                    <Reveal delay={0.16}>
-                      <div className="surface-panel interactive-outline rounded-[1.9rem] p-5 sm:rounded-[2.1rem] sm:p-7">
-                        <span className="eyebrow">Associations</span>
-                        <h3 className="mt-5 max-w-[16ch] text-[1.6rem] font-bold leading-[1] tracking-[-0.04em] text-foreground sm:text-[1.85rem]">
-                          Communities sharpening my web, systems, and security perspective.
-                        </h3>
-                        <div className="mt-6 flex flex-wrap gap-3">
-                          {experience.associations.map((association) => (
-                            <span
-                              key={association}
-                              className="rounded-full border border-border bg-background/70 px-4 py-2 text-sm font-medium text-foreground-muted"
-                            >
-                              {association}
-                            </span>
                           ))}
                         </div>
                       </div>

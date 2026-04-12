@@ -7,7 +7,7 @@ import { createStaggerItem, MOTION_EASE } from './motion';
 
 function SkillsSection({ skills }) {
   return (
-    <section id="skills" className="section-space relative overflow-hidden">
+    <section id="skills" className="deferred-section section-space relative overflow-hidden">
       <div className="section-shell relative">
         <div className="pointer-events-none absolute inset-x-0 top-16 hidden justify-center lg:flex">
           <span className="font-display text-[7.5rem] font-bold uppercase tracking-[-0.06em] text-foreground/[0.028]">

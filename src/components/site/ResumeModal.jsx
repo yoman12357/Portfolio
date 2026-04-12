@@ -322,7 +322,10 @@ export default function ResumeModal({
                         alt={profile.name}
                         width="320"
                         height="400"
+                        loading="lazy"
                         decoding="async"
+                        fetchPriority="low"
+                        sizes="92px"
                         className="aspect-[4/5] w-full object-cover"
                       />
                     </picture>

@@ -76,6 +76,7 @@ function ProjectThumbnail({ project, className = '', compact = false }) {
           alt={`${project.name} preview`}
           loading="lazy"
           decoding="async"
+          fetchPriority="low"
           sizes="(min-width: 1536px) 24vw, (min-width: 768px) 42vw, 92vw"
           variants={thumbnailScreenVariants}
           className="project-thumbnail-image h-full w-full object-cover"

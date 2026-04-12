@@ -1,12 +1,49 @@
-import { memo } from 'react';
-import { motion as Motion } from 'framer-motion';
+import { lazy, memo, Suspense, useRef } from 'react';
+import { motion as Motion, useInView } from 'framer-motion';
 import Reveal from './Reveal';
 import Magnetic from './Magnetic';
-import StaggerGroup from './StaggerGroup';
 import TextReveal from './TextReveal';
-import { createStaggerItem } from './motion';
 
-function ContactSection({ contact, onOpenResume }) {
+const ContactOrbitalScene = lazy(() => import('./contact3d/ContactOrbitalScene'));
+
+function SceneFallback() {
+  return (
+    <div
+      className="contact-scene-canvas"
+      style={{
+        background:
+          'radial-gradient(circle at top, color-mix(in srgb, var(--theme-accent) 16%, transparent), transparent 34%), linear-gradient(155deg, #040b18 0%, #071122 46%, #09172f 100%)',
+        boxShadow: '0 28px 72px color-mix(in srgb, var(--theme-accent) 12%, transparent)',
+      }}
+    >
+      <div className="pointer-events-none absolute inset-x-[9%] top-0 h-px bg-gradient-to-r from-transparent via-accent/45 to-transparent" />
+      <div className="pointer-events-none absolute left-6 top-6 rounded-full border border-white/10 bg-white/5 px-3 py-2 text-[0.62rem] font-semibold uppercase tracking-[0.26em] text-white/72 backdrop-blur">
+        3D Tech Orbit
+      </div>
+      <div className="absolute inset-0 flex items-center justify-center">
+        <Motion.div
+          animate={{ scale: [0.96, 1.03, 0.98], rotate: [0, 8, -6, 0] }}
+          transition={{ duration: 5.8, repeat: Infinity, ease: 'easeInOut' }}
+          className="relative h-44 w-44 rounded-full sm:h-52 sm:w-52"
+          style={{
+            background:
+              'radial-gradient(circle at 30% 28%, color-mix(in srgb, var(--theme-accent) 44%, #ffffff 18%), color-mix(in srgb, var(--theme-accent) 18%, #071122) 28%, #040915 72%, #020617 100%)',
+            boxShadow:
+              '0 28px 70px color-mix(in srgb, var(--theme-accent) 18%, transparent), inset 0 10px 20px rgba(255,255,255,0.12), inset 0 -24px 44px rgba(2,6,23,0.84)',
+          }}
+        >
+          <div className="absolute inset-[9%] rounded-full border border-white/10" />
+          <div className="absolute inset-[18%] rounded-full border border-accent/20" />
+          <div className="absolute inset-[-18%] rounded-full border border-accent/15" />
+        </Motion.div>
+      </div>
+    </div>
+  );
+}
+
+function ContactSection({ contact, onOpenResume, enableOrbitalScene = true }) {
+  const sceneRef = useRef(null);
+  const sceneInView = useInView(sceneRef, { once: true, amount: 0.2 });
   const emailLink = contact.links.find((link) => link.label === 'Email');
   const resumeLink = contact.links.find((link) => link.label === 'Resume');
   const prioritizedLinks = [
@@ -19,14 +56,15 @@ function ContactSection({ contact, onOpenResume }) {
   return (
     <section id="contact" className="section-space pb-24 sm:pb-28">
       <div className="section-shell">
-        <Reveal className="surface-panel-strong relative overflow-hidden rounded-[2rem] p-5 sm:rounded-[2.4rem] sm:p-9 lg:p-11">
+        <Reveal className="surface-panel-strong contact-shell">
           <div className="pointer-events-none absolute inset-x-0 top-0 h-24 bg-gradient-to-r from-transparent via-accent/15 to-transparent" />
-          <div className="pointer-events-none absolute -right-20 top-12 h-48 w-48 rounded-full bg-accent/10 blur-3xl" />
+          <div className="pointer-events-none absolute -left-14 top-12 h-40 w-40 rounded-full bg-accent/10 blur-3xl" />
+          <div className="pointer-events-none absolute -right-24 bottom-0 h-52 w-52 rounded-full bg-accent/12 blur-3xl" />
           <div className="pointer-events-none absolute bottom-0 left-0 h-px w-full bg-gradient-to-r from-transparent via-accent/35 to-transparent" />
 
-          <div className="relative grid gap-10 sm:gap-12 lg:grid-cols-[1.02fr_0.98fr] lg:items-end lg:gap-14">
+          <div className="contact-layout">
             <Reveal
-              className="min-w-0"
+              className="contact-copy"
               delay={0.06}
               staggerChildren={0.08}
               delayChildren={0.03}
@@ -43,7 +81,7 @@ function ContactSection({ contact, onOpenResume }) {
                   text={contact.title}
                   split="words"
                   stagger={0.045}
-                  className="mt-6 max-w-[16ch] text-[clamp(2.35rem,9vw,5.2rem)] font-bold leading-[0.92] tracking-[-0.06em] text-foreground sm:mt-7"
+                  className="mt-6 max-w-[13ch] text-[clamp(2.35rem,9vw,5.2rem)] font-bold leading-[0.92] tracking-[-0.06em] text-foreground sm:mt-7"
                 />
               </Reveal.Item>
 
@@ -87,7 +125,7 @@ function ContactSection({ contact, onOpenResume }) {
 
               <Reveal.Item>
                 <div className="mt-6 flex flex-wrap gap-x-5 gap-y-3 text-sm font-medium text-foreground-muted">
-                  {prioritizedLinks.map((link) => (
+                  {prioritizedLinks.map((link) =>
                     link.label === 'Resume' ? (
                       <button
                         key={link.label}
@@ -112,86 +150,30 @@ function ContactSection({ contact, onOpenResume }) {
                         {link.label}
                       </a>
                     )
-                  ))}
+                  )}
                 </div>
               </Reveal.Item>
 
               <Reveal.Item>
-                <div className="mt-8 max-w-[35rem] rounded-[1.6rem] border border-accent/25 bg-accent/[0.06] px-5 py-4 text-sm leading-7 text-foreground-muted">
+                <p className="mt-7 max-w-[32rem] text-sm leading-7 text-foreground-muted">
                   {contact.highlight}
-                </div>
+                </p>
               </Reveal.Item>
             </Reveal>
 
-            <StaggerGroup className="grid gap-4 md:grid-cols-2 lg:grid-cols-1" stagger={0.08} delayChildren={0.14}>
-              {prioritizedLinks.map((link, index) => (
-                link.label === 'Resume' ? (
-                  <Motion.button
-                    key={link.label}
-                    type="button"
-                    variants={createStaggerItem(18, 0.44)}
-                    className={`interactive-outline rounded-[1.6rem] border p-5 text-left sm:rounded-[1.8rem] sm:p-6 ${
-                      index === 0
-                        ? 'border-accent/28 bg-accent/[0.08] text-foreground shadow-[0_18px_40px_color-mix(in_srgb,var(--theme-accent)_12%,transparent)]'
-                        : 'border-border bg-background/72 text-foreground'
-                    } transition-transform duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] hover:-translate-y-1 active:scale-[0.995]`}
-                    onClick={onOpenResume}
-                  >
-                    <div className="flex items-start justify-between gap-4">
-                      <div>
-                        <span
-                          className={`text-xs font-semibold uppercase tracking-[0.26em] ${
-                            index === 0 ? 'text-accent' : 'text-foreground-muted'
-                          }`}
-                        >
-                          {link.label}
-                        </span>
-                        <p className="mt-3 text-[1.05rem] font-bold tracking-[-0.04em] sm:text-[1.28rem]">{link.value}</p>
-                      </div>
-                      <span aria-hidden="true" className="text-[0.72rem] font-semibold uppercase tracking-[0.24em] text-accent">
-                        Open
-                      </span>
-                    </div>
-                    <p className="mt-5 max-w-[30rem] text-sm leading-6 text-foreground-muted">
-                      {link.description}
-                    </p>
-                  </Motion.button>
+            <Reveal delay={0.1} className="contact-visual-column">
+              <div ref={sceneRef} className="contact-scene-wrap">
+                {enableOrbitalScene ? (
+                  <Suspense fallback={<SceneFallback />}>
+                    {sceneInView ? <ContactOrbitalScene /> : <SceneFallback />}
+                  </Suspense>
                 ) : (
-                  <Motion.a
-                    key={link.label}
-                    variants={createStaggerItem(18, 0.44)}
-                    href={link.href}
-                    target={link.href.startsWith('http') ? '_blank' : undefined}
-                    rel={link.href.startsWith('http') ? 'noreferrer' : undefined}
-                    className={`interactive-outline rounded-[1.6rem] border p-5 text-left sm:rounded-[1.8rem] sm:p-6 ${
-                      index === 0
-                        ? 'border-accent/28 bg-accent/[0.08] text-foreground shadow-[0_18px_40px_color-mix(in_srgb,var(--theme-accent)_12%,transparent)]'
-                        : 'border-border bg-background/72 text-foreground'
-                    } transition-transform duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] hover:-translate-y-1 active:scale-[0.995]`}
-                  >
-                    <div className="flex items-start justify-between gap-4">
-                      <div>
-                        <span
-                          className={`text-xs font-semibold uppercase tracking-[0.26em] ${
-                            index === 0 ? 'text-accent' : 'text-foreground-muted'
-                          }`}
-                        >
-                          {link.label}
-                        </span>
-                        <p className="mt-3 text-[1.05rem] font-bold tracking-[-0.04em] sm:text-[1.28rem]">{link.value}</p>
-                      </div>
-                      <span aria-hidden="true" className="text-[0.72rem] font-semibold uppercase tracking-[0.24em] text-accent">
-                        Open
-                      </span>
-                    </div>
-                    <p className="mt-5 max-w-[30rem] text-sm leading-6 text-foreground-muted">
-                      {link.description}
-                    </p>
-                  </Motion.a>
-                )
-              ))}
-            </StaggerGroup>
+                  <SceneFallback />
+                )}
+              </div>
+            </Reveal>
           </div>
+
         </Reveal>
       </div>
     </section>

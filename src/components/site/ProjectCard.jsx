@@ -1,5 +1,7 @@
 import { memo, useCallback, useMemo } from 'react';
 import { motion as Motion } from 'framer-motion';
+import { FiExternalLink } from 'react-icons/fi';
+import { SiGithub } from 'react-icons/si';
 import Magnetic from './Magnetic';
 import ProjectThumbnail from './ProjectThumbnail';
 import { MOTION_EASE } from './motion';
@@ -41,8 +43,15 @@ const textShiftVariants = {
 };
 
 function ProjectCard({ project, onViewDetails }) {
-  const statusLabel = useMemo(() => (project.liveUrl ? 'Launch Ready' : 'Case Notes'), [project.liveUrl]);
-  const signalLabel = useMemo(() => project.stack.slice(0, 2).join(' / ') || project.role, [project.role, project.stack]);
+  const statusLabel = useMemo(() => (project.liveUrl ? 'Live Demo' : 'Case Study'), [project.liveUrl]);
+  const signalLabel = useMemo(
+    () => project.stack.slice(0, 2).join(' / ') || project.role,
+    [project.role, project.stack]
+  );
+  const outcomeLabel = useMemo(
+    () => project.outcome ?? project.caseStudy?.impact ?? project.detail,
+    [project.caseStudy, project.detail, project.outcome]
+  );
 
   const handleOpenDetails = useCallback(() => {
     onViewDetails(project);
@@ -54,6 +63,10 @@ function ProjectCard({ project, onViewDetails }) {
       handleOpenDetails();
     }
   }, [handleOpenDetails]);
+
+  const handleLinkClick = useCallback((event) => {
+    event.stopPropagation();
+  }, []);
 
   return (
     <Magnetic className="magnetic-shell--fluid h-full" strength={8}>
@@ -101,6 +114,15 @@ function ProjectCard({ project, onViewDetails }) {
             {project.summary ?? project.description}
           </p>
 
+          {outcomeLabel ? (
+            <div className="mt-4 rounded-[1.1rem] border border-accent/16 bg-accent/[0.05] px-3.5 py-3">
+              <p className="text-[0.64rem] font-semibold uppercase tracking-[0.22em] text-accent">
+                Outcome
+              </p>
+              <p className="mt-2 text-sm leading-6 text-foreground">{outcomeLabel}</p>
+            </div>
+          ) : null}
+
           <div className="mt-5 flex flex-wrap gap-2.5">
             {project.stack.slice(0, 3).map((item) => (
               <span
@@ -110,6 +132,36 @@ function ProjectCard({ project, onViewDetails }) {
                 {item}
               </span>
             ))}
+          </div>
+
+          <div className="mt-5 flex flex-wrap items-center gap-2.5">
+            {project.githubUrl ? (
+              <a
+                href={project.githubUrl}
+                target="_blank"
+                rel="noreferrer"
+                onClick={handleLinkClick}
+                onKeyDown={(event) => event.stopPropagation()}
+                aria-label={`Open GitHub repository for ${project.name}`}
+                className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-border bg-background/72 text-[1rem] text-foreground transition-colors duration-300 hover:border-accent/35 hover:text-accent"
+              >
+                <SiGithub />
+              </a>
+            ) : null}
+
+            {project.liveUrl ? (
+              <a
+                href={project.liveUrl}
+                target="_blank"
+                rel="noreferrer"
+                onClick={handleLinkClick}
+                onKeyDown={(event) => event.stopPropagation()}
+                className="inline-flex min-h-10 items-center gap-2 rounded-full border border-border bg-background/72 px-3.5 py-2 text-sm font-medium text-foreground transition-colors duration-300 hover:border-accent/35 hover:text-accent"
+              >
+                <span>Website</span>
+                <FiExternalLink className="text-[0.95rem]" />
+              </a>
+            ) : null}
           </div>
 
           <div className="mt-auto flex flex-col items-start justify-between gap-5 pt-6 sm:flex-row sm:items-end sm:gap-4 sm:pt-7">
@@ -125,7 +177,7 @@ function ProjectCard({ project, onViewDetails }) {
               aria-hidden="true"
               className="shrink-0 rounded-full border border-accent/22 bg-accent/[0.08] px-4 py-2 text-[0.72rem] font-semibold uppercase tracking-[0.18em] text-accent"
             >
-              <span>View Details</span>
+              <span>Open Case Study</span>
               <span aria-hidden="true" className="text-[0.72rem] tracking-[0.18em]">
                 /
               </span>

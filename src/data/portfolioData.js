@@ -22,7 +22,7 @@ export const portfolioData = {
     name: 'Aryan Bokolia',
     initials: 'AB',
     role: 'Cybersecurity-Focused Full-Stack Developer',
-    secondaryRole: 'Seeking Software Engineering / Frontend Internship Roles',
+    secondaryRole: 'Open to Software Engineering and Frontend Internship Roles',
     location: 'Delhi, India',
     email: 'aryanbokolia34@gmail.com',
     phone: '+91 7982212773',
@@ -47,52 +47,52 @@ export const portfolioData = {
   hero: {
     eyebrow: 'Developer / Cybersecurity / Secure Systems',
     title: 'Aryan Bokolia',
-    subtitle: 'Cybersecurity-focused full-stack developer building secure web products and scalable systems.',
+    subtitle: 'Frontend-leaning full-stack developer building secure, fast web products with systems awareness.',
     description:
-      'CSE student at NITK seeking software engineering, frontend, and security-focused internship roles where product quality, performance, and reliable systems matter.',
+      'Computer Science student at NITK looking for internship roles where I can contribute polished React interfaces, dependable product engineering, and security-aware thinking from day one.',
     whyMe:
-      'Strong fit for frontend, product engineering, and security-aware development roles that value clean execution and systems thinking.',
-    badges: ['Open to Internships', 'Secure Web Systems', 'Frontend + MERN'],
+      'I combine product polish, clean implementation, and a growing security lens, which makes me a strong fit for frontend-heavy product teams and software engineering internships.',
+    badges: ['Open to Internships', 'React + MERN', 'Security-Aware Builds'],
     callouts: [
       {
-        label: 'Security mindset',
-        value: 'I like building products with a stronger awareness of trust boundaries, identity, and data flow.',
+        label: 'What I bring',
+        value: 'Strong frontend execution, thoughtful component structure, and attention to how product decisions affect performance and trust.',
       },
       {
         label: 'Current focus',
-        value: 'Sharpening frontend craft while going deeper into networking, secure systems, and cyber-oriented engineering.',
+        value: 'Sharpening React product work while going deeper into networking, APIs, authentication, and secure system behavior.',
       },
       {
         label: 'Best fit',
-        value: 'Software engineering, frontend, and security-focused internship roles where execution, product quality, and systems thinking all matter.',
+        value: 'Software engineering and frontend internship roles where quality, ownership, and clear technical thinking matter.',
       },
     ],
   },
   keyHighlights: {
     label: 'Key Highlights',
-    title: 'A quick snapshot of what I am building and sharpening.',
+    title: 'A quick snapshot of the work, range, and momentum behind this portfolio.',
     description:
-      'A concise view of the work, technical range, and learning momentum behind my development and cybersecurity journey.',
+      'A recruiter-friendly view of the projects, live deployments, and technical direction I am building through development and cybersecurity-focused learning.',
     items: [
       {
         value: '05',
-        label: 'Projects',
-        description: 'Featured projects spanning frontend development, secure systems, identity, and network-aware engineering.',
-      },
-      {
-        value: '10+',
-        label: 'Technologies',
-        description: 'Hands-on work across React, JavaScript, Node.js, Python, APIs, databases, Linux, and security tooling.',
+        label: 'Featured Projects',
+        description: 'Selected builds across frontend systems, secure workflows, identity, and network-aware engineering.',
       },
       {
         value: '02',
-        label: 'Core Focus Areas',
-        description: 'Clear emphasis on modern development craft together with cybersecurity-aware systems thinking.',
+        label: 'Live Deployments',
+        description: 'Production-facing websites shipped on Vercel with responsive UI work and maintainable frontend structure.',
+      },
+      {
+        value: '10+',
+        label: 'Core Tools',
+        description: 'Hands-on work across React, JavaScript, Node.js, Python, APIs, databases, Linux, and security-oriented tooling.',
       },
       {
         value: '04+',
-        label: 'Learning Milestones',
-        description: 'Certifications and focused technical learning across AI, privacy, and data protection fundamentals.',
+        label: 'Learning Signals',
+        description: 'Certifications and focused learning across AI workflows, privacy, data protection, and systems thinking.',
       },
     ],
   },
@@ -107,7 +107,7 @@ export const portfolioData = {
     label: 'How I Work',
     title: 'Development shaped by secure systems thinking, performance, and product clarity.',
     introduction:
-      'I combine full-stack development with cybersecurity, networking, and system design to build software that is efficient, resilient, and intentional.',
+      'I combine frontend execution with cybersecurity, networking, and system design so the products I build feel polished on the surface and dependable underneath.',
     mantra:
       'I care about systems that do more than work. They should scale well, perform cleanly, and stay secure by design.',
     paragraphs: [
@@ -122,7 +122,7 @@ export const portfolioData = {
     strengths: [
       {
         title: 'Security-Aware Development',
-        description: 'I approach product development with attention to authentication, data protection, reliability, and safer engineering decisions.',
+        description: 'I approach product development with attention to authentication, data protection, trust boundaries, and safer engineering decisions.',
       },
       {
         title: 'Networking & Systems Thinking',
@@ -130,7 +130,7 @@ export const portfolioData = {
       },
       {
         title: 'Frontend Precision',
-        description: 'I care about clean interfaces, strong hierarchy, and product experiences that feel polished, readable, and professionally executed.',
+        description: 'I care about clean interfaces, strong hierarchy, responsive behavior, and product experiences that feel polished and recruiter-ready.',
       },
     ],
   },
@@ -249,7 +249,7 @@ export const portfolioData = {
   projects: {
     label: 'What I Built',
     title: 'Featured Projects',
-    subtitle: 'A selection of projects where frontend craft, security awareness, and systems thinking come together in tangible work',
+    subtitle: 'A selection of projects where frontend craft, systems thinking, and security-aware engineering come together in tangible work.',
     items: [
       {
         index: '01',
@@ -260,6 +260,8 @@ export const portfolioData = {
           'Built a Python-based routing prototype for privacy-sensitive networks, combining Tor control, route evaluation, and behavioral monitoring. The system handled secure transmission flows more reliably and gave me hands-on experience with anonymity, routing tradeoffs, and network-level complexity.',
         detail:
           'This project pushed me beyond frontend work into privacy engineering, path-selection logic, and the operational tradeoffs involved in secure communication systems.',
+        outcome:
+          'Built a working prototype that made route selection, monitoring, and transmission behavior easier to reason about in a security-focused context.',
         thumbnail: {
           eyebrow: 'Privacy Routing',
           title: 'Secure Path Selection',
@@ -288,6 +290,8 @@ export const portfolioData = {
           'Responsive team website with reusable sections, clearer information architecture, and faster content updates for a student engineering team.',
         description:
           'Developed the Team AeroNITK website with reusable React sections, responsive layouts, and cleaner information flow for projects, achievements, and updates. The result was a more maintainable frontend that improved content clarity and made team-facing updates easier to ship.',
+        outcome:
+          'Delivered a live team website that improved discoverability, maintainability, and the clarity of the club’s public web presence.',
         thumbnail: {
           eyebrow: 'Frontend System',
           title: 'Responsive Team Platform',
@@ -310,11 +314,42 @@ export const portfolioData = {
       },
       {
         index: '03',
+        name: 'Identity Guard',
+        summary:
+          'Identity protection concept focused on authentication flows, structured data handling, and privacy-aware user protection.',
+        description:
+          'Designed an identity-focused security concept around authentication, access control, and privacy-aware handling of sensitive user data. The project clarified how secure user flows should be structured and strengthened my thinking around trust, identity, and protection by design.',
+        outcome:
+          'Mapped identity risk, authentication, and data handling into a clearer workflow for building safer user-facing systems.',
+        thumbnail: {
+          eyebrow: 'Identity Security',
+          title: 'Authentication Layers',
+          meta: 'Privacy-first handling for sensitive user data',
+          tags: ['Privacy', 'Auth', 'Security'],
+        },
+        caseStudy: {
+          problem:
+            'Users face growing risk around identity exposure and need stronger safeguards for sensitive personal data in digital systems.',
+          solution:
+            'Designed a workflow centered on authentication, privacy-minded data handling, and structured identity protection across user-facing flows.',
+          impact:
+            'Mapped authentication and privacy concerns into a concrete workflow, giving me a clearer foundation for building safer identity-aware products.',
+        },
+        role: 'Security Tooling Developer',
+        stack: ['Python', 'OSINT', 'Privacy', 'Security'],
+        githubUrl: 'https://github.com/yoman12357/IdentityGuard',
+        liveUrl: '',
+        availability: 'Concept / local demo',
+      },
+      {
+        index: '04',
         name: 'Data Communication Project',
         summary:
           'Network communication prototype covering protocols, transmission flow, and secure data exchange through a more structured systems model.',
         description:
           'Built a systems-focused prototype to model transmission flow, protocol behavior, and communication reliability across networks. It translated abstract networking concepts into a clearer implementation and improved how I reason about secure communication design.',
+        outcome:
+          'Turned core networking concepts into a working prototype, which improved my practical grasp of protocol flow and communication reliability.',
         thumbnail: {
           eyebrow: 'Network Prototype',
           title: 'Protocol Flow Visuals',
@@ -336,12 +371,14 @@ export const portfolioData = {
         availability: 'Prototype demo',
       },
       {
-        index: '04',
+        index: '05',
         name: 'FinSight',
         summary:
           'Financial insights interface with clearer hierarchy, modular components, and responsive data views for faster interpretation.',
         description:
           'Built a frontend for exploring financial information through modular components, responsive layouts, and stronger visual hierarchy. The interface made dense data easier to scan and compare while reinforcing performance-aware UI decisions for content-heavy screens.',
+        outcome:
+          'Improved readability for a data-heavy interface by structuring information into reusable components and cleaner visual hierarchy.',
         thumbnail: {
           eyebrow: 'Data Interface',
           title: 'Readable Financial Signals',
@@ -362,75 +399,63 @@ export const portfolioData = {
         liveUrl: 'https://finsight-opal.vercel.app',
         availability: 'Live website',
       },
-      {
-        index: '05',
-        name: 'Identity Guard',
-        summary:
-          'Identity protection concept focused on authentication flows, structured data handling, and privacy-aware user protection.',
-        description:
-          'Designed an identity-focused security concept around authentication, access control, and privacy-aware handling of sensitive user data. The project clarified how secure user flows should be structured and strengthened my thinking around trust, identity, and protection by design.',
-        thumbnail: {
-          eyebrow: 'Identity Security',
-          title: 'Authentication Layers',
-          meta: 'Privacy-first handling for sensitive user data',
-          tags: ['Privacy', 'Auth', 'Security'],
-        },
-        caseStudy: {
-          problem:
-            'Users face growing risk around identity exposure and need stronger safeguards for sensitive personal data in digital systems.',
-          solution:
-            'Designed a workflow centered on authentication, privacy-minded data handling, and structured identity protection across user-facing flows.',
-          impact:
-            'Mapped authentication and privacy concerns into a concrete workflow, giving me a clearer foundation for building safer identity-aware products.',
-        },
-        role: 'Security Tooling Developer',
-        stack: ['Python', 'OSINT', 'Privacy', 'Security'],
-        githubUrl: 'https://github.com/yoman12357/IdentityGuard',
-        liveUrl: '',
-        availability: 'Concept / local demo',
-      },
     ],
   },
   experience: {
     label: 'Why It Matters',
-    title: 'The work is valuable because it compounds into stronger engineering judgment and real technical direction.',
+    title: 'The work matters because it compounds into stronger engineering judgment and clearer technical direction.',
     introduction:
-      'Projects, live web work, and active learning are all reinforcing how I think about delivery, reliability, and the long-term path I want to build in development and security.',
+      'Projects, live web work, and focused learning are all reinforcing how I think about delivery, reliability, collaboration, and the kind of engineer I want to become.',
     highlights: [
-      { value: 'Security', label: 'Projects and prototypes' },
-      { value: 'Web', label: 'Production-facing interfaces' },
-      { value: 'Systems', label: 'Network-aware learning path' },
+      { value: '02', label: 'Active web roles' },
+      { value: '04+', label: 'Credentials and certifications' },
+      { value: '04', label: 'Communities and technical groups' },
     ],
     timeline: [
       {
         type: 'Role',
-        title: 'Web Developer',
-        org: 'TEDxNITKSurathkal',
-        period: 'Aug 2025 - Present',
+        title: 'Executive Member - Technical Team',
+        org: 'ISTE NITK',
+        period: 'Aug 2024 - Present',
         location: 'Mangaluru, Karnataka',
         summary:
-          'Helping shape and maintain the digital presence for TEDxNITKSurathkal with cleaner structure, better UX decisions, and more dependable frontend implementation.',
+          'Contributing to technical initiatives and student-facing programming activities through the technical team at ISTE NITK.',
         points: [
-          'Contributing to the official TEDx website experience',
-          'Improving responsiveness, interaction quality, and content presentation',
-          'Working with design direction and production-facing delivery',
+          'Coordinating technical initiatives and workshops for 200+ student members',
+          'Supporting skill development in emerging technologies and engineering practice',
+          'Collaborating with cross-functional teams to organize technical events and coding competitions',
         ],
-        tags: ['React', 'Frontend', 'Delivery'],
+        tags: ['Leadership', 'Workshops', 'Technical Team'],
       },
       {
         type: 'Role',
-        title: 'Web Team Member',
+        title: 'Web Developer',
         org: 'Team AeroNITK',
-        period: 'Apr 2025 - Present',
-        location: 'Karnataka, India',
+        period: 'Aug 2024 - Present',
+        location: 'Mangaluru, Karnataka',
         summary:
-          'Supporting the club’s online identity by presenting engineering projects, technical achievements, and team communication more clearly through web design and implementation.',
+          'Serving as a web developer for Team AeroNITK by designing and maintaining the team website and improving how technical work is presented online.',
         points: [
-          'Building and updating the club website',
-          'Translating technical work into a cleaner digital showcase',
-          'Collaborating across design, content, and deployment needs',
+          'Designing and maintaining the official team website',
+          'Presenting projects, achievements, and updates through cleaner frontend structure',
+          'Applying responsive React patterns to improve usability across devices',
         ],
-        tags: ['JavaScript', 'UI', 'Collaboration'],
+        tags: ['React', 'Frontend', 'Collaboration'],
+      },
+      {
+        type: 'Role',
+        title: 'Web Developer',
+        org: 'TEDxNITK Surathkal',
+        period: 'Aug 2024 - Present',
+        location: 'Mangaluru, Karnataka',
+        summary:
+          'Helping design and maintain the TEDxNITK Surathkal web presence with a focus on clean frontend delivery and dependable updates.',
+        points: [
+          'Designing and maintaining the official website experience',
+          'Improving content presentation, responsiveness, and interaction quality',
+          'Working with production-facing design and delivery constraints',
+        ],
+        tags: ['React', 'Web', 'Delivery'],
       },
       {
         type: 'Education',
@@ -460,14 +485,28 @@ export const portfolioData = {
     label: 'How To Reach Me',
     title: 'Available for software engineering, frontend, and security-focused internship opportunities.',
     ctaText: "Let's work together.",
-    cta: 'Let’s build something secure and impactful.',
+    cta: 'Let’s build something secure and useful.',
     description:
-      'I am looking for teams where I can contribute strong frontend execution, thoughtful product quality, and a growing cybersecurity mindset in real engineering work.',
-    note: 'The fastest way to reach me is by email. You can also review my work on GitHub, connect on LinkedIn, or preview my resume below.',
+      'I am looking for teams where I can contribute clean frontend execution, strong product instincts, and a growing cybersecurity mindset in real engineering work.',
+    note: 'Email is the fastest way to reach me. You can also review my work on GitHub, connect on LinkedIn, or open my resume directly below.',
     primaryActionLabel: 'Email Me',
     secondaryActionLabel: 'View Resume',
     highlight:
       'Open to internships, security-aware product teams, and technically ambitious collaborations where strong execution and reliable systems both matter.',
+    availabilityItems: [
+      {
+        label: 'Based In',
+        value: 'Delhi, India / NITK Surathkal',
+      },
+      {
+        label: 'Looking For',
+        value: 'SDE, frontend, and product engineering internships',
+      },
+      {
+        label: 'Response Time',
+        value: 'Usually within 24 hours for email and LinkedIn outreach',
+      },
+    ],
     links: [
       {
         label: 'Email',
@@ -496,7 +535,7 @@ export const portfolioData = {
     ],
   },
   footer: {
-    note: 'Built to present product-minded development, secure system curiosity, and a sharper technical identity in one place.',
+    note: 'Built to present product-minded development, security-aware systems thinking, and a clearer technical identity in one place.',
     socials: [
       { name: 'Email', url: 'mailto:aryanbokolia34@gmail.com' },
       { name: 'GitHub', url: 'https://github.com/yoman12357' },

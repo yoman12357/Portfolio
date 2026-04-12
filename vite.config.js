@@ -8,6 +8,36 @@ import tailwindcss from '@tailwindcss/vite';
 
 const COMPRESSIBLE_EXTENSIONS = new Set(['.css', '.html', '.js', '.json', '.svg', '.txt', '.xml']);
 const ROOT_DIRECTORY = fileURLToPath(new URL('.', import.meta.url));
+const THREE_CHUNK_PACKAGES = new Set([
+  '@mediapipe/tasks-vision',
+  '@monogrid/gainmap-js',
+  '@react-three/drei',
+  '@react-three/fiber',
+  '@use-gesture/react',
+  'base64-js',
+  'buffer',
+  'camera-controls',
+  'detect-gpu',
+  'glsl-noise',
+  'hls.js',
+  'its-fine',
+  'maath',
+  'meshline',
+  'react-use-measure',
+  'stats-gl',
+  'stats.js',
+  'suspend-react',
+  'three',
+  'three-mesh-bvh',
+  'three-stdlib',
+  'troika-three-text',
+  'troika-three-utils',
+  'troika-worker-utils',
+  'tunnel-rat',
+  'use-sync-external-store',
+  'utility-types',
+  'zustand',
+]);
 
 function getNodeModulePackage(id) {
   const normalizedId = id.replaceAll('\\', '/');
@@ -109,6 +139,19 @@ export default defineConfig({
             packageName === 'motion-utils'
           ) {
             return 'motion';
+          }
+
+          if (
+            packageName &&
+            (THREE_CHUNK_PACKAGES.has(packageName) ||
+              packageName.startsWith('@react-three/') ||
+              packageName.startsWith('troika-'))
+          ) {
+            return 'three-vendor';
+          }
+
+          if (packageName === 'react-icons') {
+            return 'icons';
           }
 
           if (packageName === 'firebase' || packageName.startsWith('@firebase/')) {

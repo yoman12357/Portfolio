@@ -5,15 +5,14 @@ import Reveal from './Reveal';
 
 function AboutSection({ about }) {
   return (
-    <section id="about" className="section-space relative overflow-hidden">
+    <section id="about" className="deferred-section section-space relative overflow-hidden">
       <div className="section-shell relative">
-        <div className="pointer-events-none absolute inset-x-0 top-20 hidden justify-center lg:flex">
-          <span className="font-display text-[8.5rem] font-bold uppercase tracking-[-0.06em] text-foreground/[0.03]">
-            {about.watermark}
-          </span>
-        </div>
-
-        <SectionHeading label={about.label} title={about.title} description={about.introduction} />
+        <SectionHeading
+          label={about.label}
+          title={about.title}
+          description={about.introduction}
+          centered
+        />
 
         <div className="mt-16">
           <Reveal>
@@ -50,20 +49,6 @@ function AboutSection({ about }) {
                       {strength.description}
                     </p>
                   </Motion.article>
-                ))}
-              </div>
-
-              <div className="mt-10 grid gap-3 sm:grid-cols-2 lg:max-w-[32rem]">
-                {about.facts.map((fact) => (
-                  <div
-                    key={fact.label}
-                    className="rounded-[1.5rem] border border-border bg-background/70 p-4 backdrop-blur"
-                  >
-                    <p className="text-xs font-semibold uppercase tracking-[0.25em] text-foreground-muted">
-                      {fact.label}
-                    </p>
-                    <p className="mt-2 text-lg font-semibold text-foreground">{fact.value}</p>
-                  </div>
                 ))}
               </div>
             </div>

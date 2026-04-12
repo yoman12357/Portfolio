@@ -87,55 +87,66 @@ export default function SiteHeader({ theme, onToggleTheme, navigation, profile, 
             backdropFilter: scrolled ? 'blur(24px)' : 'blur(16px)',
           }}
           transition={{ duration: 0.38, ease: MOTION_EASE }}
-          className={`nav-glass flex items-center justify-between gap-2 rounded-[1.45rem] px-2.5 py-2 transition-all duration-300 sm:gap-4 sm:rounded-full sm:px-5 sm:py-3 ${
+          className={`nav-glass relative flex items-center justify-between gap-3 overflow-hidden rounded-[1.7rem] px-3 py-2.5 transition-all duration-300 sm:gap-4 sm:rounded-[2rem] sm:px-5 sm:py-3.5 ${
             scrolled ? 'shadow-[var(--theme-shadow-lg)] backdrop-blur-xl' : ''
           }`}
         >
-          <a
-            href="#hero"
-            onClick={(event) => {
-              event.preventDefault();
-              scrollToSection('hero');
-            }}
-            className="group flex min-w-0 items-center gap-2.5 sm:gap-3"
-          >
-            <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-foreground text-sm font-bold tracking-[0.18em] text-background transition-transform duration-300 group-hover:scale-[1.02] sm:h-11 sm:w-11">
-              {profile.initials}
-            </span>
-            <span className="min-w-0 max-[420px]:hidden">
-              <span className="block truncate font-display text-sm font-bold uppercase tracking-[0.2em] text-foreground">
-                {profile.name}
+          <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-accent/45 to-transparent" />
+          <div className="pointer-events-none absolute -left-10 top-1/2 h-20 w-20 -translate-y-1/2 rounded-full bg-accent/10 blur-2xl" />
+
+          <div className="flex min-w-0 flex-1 items-center gap-3 sm:gap-4">
+            <a
+              href="#hero"
+              onClick={(event) => {
+                event.preventDefault();
+                scrollToSection('hero');
+              }}
+              className="group flex min-w-0 items-center gap-3 rounded-[1.25rem] border border-border/60 bg-background/50 px-2.5 py-2 sm:gap-3.5 sm:px-3"
+            >
+              <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-[1rem] bg-foreground text-sm font-bold tracking-[0.18em] text-background transition-transform duration-300 group-hover:scale-[1.02] sm:h-11 sm:w-11">
+                {profile.initials}
               </span>
-              <span className="hidden truncate text-sm text-foreground-muted sm:block">{profile.secondaryRole}</span>
-            </span>
-          </a>
+              <span className="min-w-0 max-[420px]:hidden">
+                <span className="block truncate font-display text-sm font-bold uppercase tracking-[0.2em] text-foreground">
+                  {profile.name}
+                </span>
+                <span className="hidden truncate text-[0.82rem] text-foreground-muted sm:block">
+                  {profile.secondaryRole}
+                </span>
+              </span>
+            </a>
 
-          <nav className="hidden items-center gap-2 lg:flex">
-            {navigation.map((item) => (
-              <a
-                key={item.id}
-                href={`#${item.id}`}
-                onClick={(event) => {
-                  event.preventDefault();
-                  scrollToSection(item.id);
-                }}
-                aria-current={activeId === item.id ? 'page' : undefined}
-                className={`rounded-full px-4 py-2 text-sm font-medium transition-colors duration-300 ${
-                  activeId === item.id
-                    ? 'bg-accent text-accent-foreground shadow-[0_18px_40px_color-mix(in_srgb,var(--theme-accent)_22%,transparent)]'
-                    : 'text-foreground-muted hover:bg-surface hover:text-foreground'
-                }`}
-              >
-                {item.label}
-              </a>
-            ))}
-          </nav>
+            <nav className="hidden items-center gap-1 rounded-full border border-border/60 bg-background/42 p-1.5 lg:flex">
+              {navigation.map((item) => (
+                <a
+                  key={item.id}
+                  href={`#${item.id}`}
+                  onClick={(event) => {
+                    event.preventDefault();
+                    scrollToSection(item.id);
+                  }}
+                  aria-current={activeId === item.id ? 'page' : undefined}
+                  className={`rounded-full px-4 py-2.5 text-sm font-medium transition-all duration-300 ${
+                    activeId === item.id
+                      ? 'bg-accent text-accent-foreground shadow-[0_18px_40px_color-mix(in_srgb,var(--theme-accent)_22%,transparent)]'
+                      : 'text-foreground-muted hover:bg-surface hover:text-foreground'
+                  }`}
+                >
+                  {item.label}
+                </a>
+              ))}
+            </nav>
+          </div>
 
-          <div className="flex min-w-0 items-center gap-2 sm:gap-3">
+          <div className="flex min-w-0 items-center gap-2 rounded-full border border-border/60 bg-background/46 p-1.5 sm:gap-3">
             <ThemeToggle theme={theme} onToggle={onToggleTheme} />
 
             <Magnetic strength={8}>
-              <button type="button" onClick={onOpenResume} className="button-secondary hidden sm:inline-flex">
+              <button
+                type="button"
+                onClick={onOpenResume}
+                className="button-secondary hidden border-transparent bg-accent text-accent-foreground shadow-[0_16px_32px_color-mix(in_srgb,var(--theme-accent)_22%,transparent)] sm:inline-flex"
+              >
                 Resume
               </button>
             </Magnetic>
@@ -164,9 +175,19 @@ export default function SiteHeader({ theme, onToggleTheme, navigation, profile, 
               initial={{ opacity: 0, y: -12 }}
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -12 }}
-              className="nav-glass mt-2 rounded-[1.5rem] p-3 sm:mt-3 sm:rounded-[2rem] sm:p-4 lg:hidden"
+              className="nav-glass mt-2 overflow-hidden rounded-[1.6rem] p-3 sm:mt-3 sm:rounded-[2rem] sm:p-4 lg:hidden"
               id="mobile-navigation"
             >
+              <div className="mb-3 flex items-center justify-between rounded-[1.2rem] border border-border/60 bg-background/46 px-4 py-3">
+                <div>
+                  <p className="text-[0.68rem] font-semibold uppercase tracking-[0.24em] text-foreground-muted">
+                    Navigation
+                  </p>
+                  <p className="mt-1 text-sm font-semibold text-foreground">{profile.name}</p>
+                </div>
+                <span className="h-2.5 w-2.5 rounded-full bg-accent shadow-[0_0_18px_var(--theme-accent)]" />
+              </div>
+
               <nav className="flex flex-col gap-2">
                 {navigation.map((item) => (
                   <a
@@ -177,8 +198,10 @@ export default function SiteHeader({ theme, onToggleTheme, navigation, profile, 
                       scrollToSection(item.id);
                     }}
                     aria-current={activeId === item.id ? 'page' : undefined}
-                    className={`rounded-2xl px-4 py-3 text-sm font-semibold ${
-                      activeId === item.id ? 'bg-accent text-accent-foreground' : 'bg-background/50 text-foreground'
+                    className={`rounded-[1.15rem] px-4 py-3 text-sm font-semibold transition-colors duration-300 ${
+                      activeId === item.id
+                        ? 'bg-accent text-accent-foreground'
+                        : 'border border-border/60 bg-background/50 text-foreground'
                     }`}
                   >
                     {item.label}

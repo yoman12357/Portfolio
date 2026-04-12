@@ -7,7 +7,7 @@ import { createStaggerItem } from './motion';
 
 function KeyHighlightsSection({ keyHighlights }) {
   return (
-    <section id="highlights" className="pb-24 sm:pb-28">
+    <section id="highlights" className="deferred-section pb-24 sm:pb-28">
       <div className="section-shell">
         <Reveal
           className="max-w-[44rem]"

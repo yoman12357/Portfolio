@@ -15,6 +15,8 @@ function HeroSection({ profile, hero, onOpenResume }) {
   const sectionRef = useRef(null);
   const reduceMotion = useReducedMotion();
   const [enableScrollEffects, setEnableScrollEffects] = useState(false);
+  const visibleBadges = useMemo(() => hero.badges.slice(0, 2), [hero.badges]);
+  const visibleCallouts = useMemo(() => hero.callouts.slice(0, 2), [hero.callouts]);
   const heroLines = useMemo(() => {
     const [firstName, ...remainingNames] = profile.name.split(' ');
     return [firstName, remainingNames.join(' ')];
@@ -48,8 +50,8 @@ function HeroSection({ profile, hero, onOpenResume }) {
   const previewScale = useTransform(scrollYProgress, [0, 1], [1, 0.985]);
 
   return (
-    <section id="hero" ref={sectionRef} className="relative overflow-hidden pt-8 sm:pt-12">
-      <div className="section-shell section-space pb-20 sm:pb-28">
+    <section id="hero" ref={sectionRef} className="relative overflow-hidden pt-2 sm:pt-4">
+      <div className="section-shell pt-8 pb-20 sm:pt-10 sm:pb-24 lg:pt-12">
         <Motion.div
           aria-hidden="true"
           initial={{ opacity: 0, scale: 0.94 }}
@@ -59,7 +61,7 @@ function HeroSection({ profile, hero, onOpenResume }) {
           className="hero-grid-glow hero-grid-glow--animated pointer-events-none absolute inset-x-0 top-6 h-[24rem] sm:top-10 sm:h-[32rem]"
         />
 
-        <div className="relative grid items-end gap-10 sm:gap-12 lg:grid-cols-[1.02fr_0.98fr] lg:gap-14">
+        <div className="relative grid items-start gap-8 sm:gap-10 lg:grid-cols-[1.02fr_0.98fr] lg:gap-14">
           <Motion.div
             initial="hidden"
             animate="show"
@@ -110,47 +112,43 @@ function HeroSection({ profile, hero, onOpenResume }) {
                   {hero.description}
                 </Motion.p>
 
-                <Motion.div variants={heroSupportItem} className="mt-8 max-w-[34rem]">
-                  <div className="surface-panel flex w-full flex-wrap items-center gap-2.5 rounded-[1.2rem] px-4 py-3 sm:inline-flex sm:w-auto sm:gap-3 sm:rounded-[1.35rem] sm:px-5 sm:py-3.5">
-                    <span className="eyebrow !mb-0">
-                      Why me
-                    </span>
-                    <p className="text-sm font-medium leading-6 text-foreground sm:text-[0.95rem]">
-                      {hero.whyMe}
-                    </p>
+                <Motion.div variants={heroSupportItem} className="mt-8">
+                  <div className="flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between lg:gap-5">
+                    <div className="surface-panel flex w-full max-w-[34rem] flex-wrap items-center gap-2.5 rounded-[1.2rem] px-4 py-3 sm:gap-3 sm:rounded-[1.35rem] sm:px-5 sm:py-3.5">
+                      <span className="eyebrow !mb-0">
+                        Why me
+                      </span>
+                      <p className="text-sm font-medium leading-6 text-foreground sm:text-[0.95rem]">
+                        {hero.whyMe}
+                      </p>
+                    </div>
+
+                    <div className="flex flex-wrap justify-start gap-3 sm:gap-3.5">
+                      <Magnetic>
+                        <a href={`mailto:${profile.email}`} className="button-primary hero-primary-cta">
+                          Email Me <span aria-hidden="true">/</span>
+                        </a>
+                      </Magnetic>
+                      <Magnetic strength={8}>
+                        <button type="button" onClick={onOpenResume} className="button-secondary">
+                          View Resume <span aria-hidden="true">/</span>
+                        </button>
+                      </Magnetic>
+                      <Magnetic strength={7}>
+                        <a href="#projects" className="button-secondary">
+                          View Work <span aria-hidden="true">/</span>
+                        </a>
+                      </Magnetic>
+
+                      {visibleBadges.map((badge) => (
+                        <span key={badge} className="hero-chip hero-chip--muted">
+                          {badge}
+                        </span>
+                      ))}
+                    </div>
                   </div>
                 </Motion.div>
               </Motion.div>
-            </Motion.div>
-
-            <Motion.div variants={heroLeadItem}>
-              <div className="mt-8 flex flex-wrap gap-3 sm:mt-10 sm:gap-3.5">
-                <Magnetic>
-                  <a href={`mailto:${profile.email}`} className="button-primary hero-primary-cta">
-                    Hire Me <span aria-hidden="true">/</span>
-                  </a>
-                </Magnetic>
-                <Magnetic strength={8}>
-                  <button type="button" onClick={onOpenResume} className="button-secondary">
-                    View Resume <span aria-hidden="true">/</span>
-                  </button>
-                </Magnetic>
-                <Magnetic strength={7}>
-                  <a href="#contact" className="button-secondary">
-                    Contact <span aria-hidden="true">/</span>
-                  </a>
-                </Magnetic>
-              </div>
-            </Motion.div>
-
-            <Motion.div variants={heroSupportItem}>
-              <div className="mt-9 flex flex-wrap gap-2.5 sm:mt-11 sm:gap-3">
-                {hero.badges.map((badge) => (
-                  <span key={badge} className="hero-chip hero-chip--muted">
-                    {badge}
-                  </span>
-                ))}
-              </div>
             </Motion.div>
           </Motion.div>
 
@@ -158,8 +156,8 @@ function HeroSection({ profile, hero, onOpenResume }) {
             initial="hidden"
             animate="show"
             variants={heroPreviewContainer}
-              className="w-full lg:justify-self-end"
-            >
+            className="w-full lg:-mt-2 lg:justify-self-end"
+          >
               <Motion.div style={enableScrollEffects ? { y: previewY, scale: previewScale } : { y: 0, scale: 1 }}>
                 <Motion.div
                   variants={heroPreviewItem}
@@ -187,8 +185,10 @@ function HeroSection({ profile, hero, onOpenResume }) {
                           alt={profile.name}
                           width="960"
                           height="720"
+                          loading="eager"
                           decoding="async"
                           fetchPriority="high"
+                          sizes="(min-width: 1024px) 28vw, (min-width: 768px) 38vw, 88vw"
                           className="aspect-[4/5] w-full object-cover"
                         />
                       </picture>
@@ -219,7 +219,7 @@ function HeroSection({ profile, hero, onOpenResume }) {
                 </Motion.div>
 
                 <Motion.div variants={createStaggerContainer(0.08, 0.16)} className="mt-5 grid gap-3.5 sm:mt-6 sm:gap-4">
-                  {hero.callouts.map((callout) => (
+                  {visibleCallouts.map((callout) => (
                     <Motion.div
                       key={callout.label}
                       variants={createStaggerItem(20, 0.58)}
