@@ -1,13 +1,18 @@
 import {
+  SiCss,
+  SiExpress,
   SiGit,
+  SiHtml5,
   SiJavascript,
   SiLinux,
+  SiMongodb,
   SiMysql,
   SiNextdotjs,
   SiNodedotjs,
   SiPython,
   SiReact,
   SiTailwindcss,
+  SiVercel,
   SiVscodium,
 } from 'react-icons/si';
 
@@ -34,6 +39,13 @@ export const TECHNOLOGIES = [
     shell: 'outer',
   },
   {
+    id: 'vercel',
+    label: 'Vercel',
+    color: '#F8FAFC',
+    Icon: SiVercel,
+    shell: 'outer',
+  },
+  {
     id: 'python',
     label: 'Python',
     color: '#A78BFA',
@@ -55,6 +67,20 @@ export const TECHNOLOGIES = [
     shell: 'outer',
   },
   {
+    id: 'html',
+    label: 'HTML5',
+    color: '#F97316',
+    Icon: SiHtml5,
+    shell: 'middle',
+  },
+  {
+    id: 'css',
+    label: 'CSS3',
+    color: '#38BDF8',
+    Icon: SiCss,
+    shell: 'middle',
+  },
+  {
     id: 'next',
     label: 'Next.js',
     color: '#E2E8F0',
@@ -73,6 +99,20 @@ export const TECHNOLOGIES = [
     label: 'Node.js',
     color: '#4ADE80',
     Icon: SiNodedotjs,
+    shell: 'inner',
+  },
+  {
+    id: 'mongodb',
+    label: 'MongoDB',
+    color: '#34D399',
+    Icon: SiMongodb,
+    shell: 'inner',
+  },
+  {
+    id: 'express',
+    label: 'Express',
+    color: '#CBD5E1',
+    Icon: SiExpress,
     shell: 'inner',
   },
   {

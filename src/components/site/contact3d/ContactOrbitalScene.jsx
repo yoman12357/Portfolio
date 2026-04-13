@@ -17,8 +17,8 @@ function SceneRig() {
   });
 
   return (
-    <group ref={rigRef} position={[0, -0.05, 0]}>
-      <Globe radius={1.6} />
+    <group ref={rigRef} position={[0, -0.08, 0]}>
+      <Globe radius={1.72} />
       <OrbitingIcons />
     </group>
   );
