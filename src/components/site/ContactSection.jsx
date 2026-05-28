@@ -176,12 +176,6 @@ function ContactSection({ contact, onOpenResume, enableOrbitalScene = true }) {
               </Reveal.Item>
 
               <Reveal.Item>
-                <p className="mt-7 max-w-[32rem] text-sm leading-7 text-foreground-muted">
-                  {contact.highlight}
-                </p>
-              </Reveal.Item>
-
-              <Reveal.Item>
                 <div className="contact-link-grid mt-7 grid gap-3 sm:grid-cols-2">
                   {prioritizedLinks.map((link) =>
                     link.label === 'Resume' ? (
@@ -217,6 +211,13 @@ function ContactSection({ contact, onOpenResume, enableOrbitalScene = true }) {
                   )}
                 </div>
               </Reveal.Item>
+
+              <Reveal.Item>
+                <p className="mt-7 max-w-[32rem] text-sm leading-7 text-foreground-muted">
+                  {contact.highlight}
+                </p>
+              </Reveal.Item>
+
             </Reveal>
 
             <Reveal delay={0.1} className="contact-visual-column">

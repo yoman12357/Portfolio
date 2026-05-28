@@ -263,52 +263,6 @@ function HeroSection({ profile, hero, keyHighlights, onOpenResume, enableEnhance
                     </div>
 
                     <div className="flex w-full flex-col gap-3.5 xl:w-auto xl:items-end">
-                      <div className="flex flex-col gap-3 min-[500px]:flex-row min-[500px]:flex-wrap xl:justify-end">
-                        <Magnetic proximity proximityRadius={132} proximityStrength={13}>
-                          <Motion.a
-                            href={`mailto:${profile.email}`}
-                            whileHover={{ scale: 1.008, y: -1 }}
-                            whileTap={{ scale: 0.96 }}
-                            transition={{ duration: 0.18 }}
-                            className="button-primary hero-primary-cta w-full min-[500px]:w-auto"
-                            data-cursor-wrap="true"
-                            data-cursor-padding="10"
-                            data-cursor-proximity="122"
-                          >
-                            Email Me <span aria-hidden="true">/</span>
-                          </Motion.a>
-                        </Magnetic>
-                        <Magnetic strength={8} proximity proximityRadius={128} proximityStrength={12}>
-                          <Motion.button
-                            type="button"
-                            onClick={onOpenResume}
-                            whileHover={{ scale: 1.006, y: -1 }}
-                            whileTap={{ scale: 0.96 }}
-                            transition={{ duration: 0.18 }}
-                            className="button-secondary w-full min-[500px]:w-auto"
-                            data-cursor-wrap="true"
-                            data-cursor-padding="10"
-                            data-cursor-proximity="118"
-                          >
-                            View Resume <span aria-hidden="true">/</span>
-                          </Motion.button>
-                        </Magnetic>
-                        <Magnetic strength={7} proximity proximityRadius={128} proximityStrength={11}>
-                          <Motion.a
-                            href="#projects"
-                            whileHover={{ scale: 1.006, y: -1 }}
-                            whileTap={{ scale: 0.96 }}
-                            transition={{ duration: 0.18 }}
-                            className="button-secondary w-full min-[500px]:w-auto"
-                            data-cursor-wrap="true"
-                            data-cursor-padding="10"
-                            data-cursor-proximity="118"
-                          >
-                            View Work <span aria-hidden="true">/</span>
-                          </Motion.a>
-                        </Magnetic>
-                      </div>
-
                       {visibleBadges.length ? (
                         <div className="flex flex-wrap gap-2.5 sm:gap-3 xl:justify-end">
                           {visibleBadges.map((badge) => (
@@ -318,10 +272,6 @@ function HeroSection({ profile, hero, keyHighlights, onOpenResume, enableEnhance
                           ))}
                         </div>
                       ) : null}
-
-                      <p className="max-w-[24rem] text-xs font-medium uppercase tracking-[0.2em] text-foreground-muted xl:text-right">
-                        Clear value prop, real projects, and a portfolio built to feel intentional from the first scroll.
-                      </p>
                     </div>
                   </div>
                 </Motion.div>

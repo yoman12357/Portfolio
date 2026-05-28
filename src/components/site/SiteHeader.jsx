@@ -267,10 +267,10 @@ export default function SiteHeader({
               <span className="hidden text-[0.68rem] font-semibold uppercase tracking-[0.22em] text-foreground-muted sm:inline">
                 {menuOpen ? 'Close' : 'Menu'}
               </span>
-              <span className="flex flex-col gap-1.5">
-                <span className={`h-0.5 w-5 rounded-full bg-current transition-transform ${menuOpen ? 'translate-y-2 rotate-45' : ''}`} />
-                <span className={`h-0.5 w-5 rounded-full bg-current transition-opacity ${menuOpen ? 'opacity-0' : ''}`} />
-                <span className={`h-0.5 w-5 rounded-full bg-current transition-transform ${menuOpen ? '-translate-y-2 -rotate-45' : ''}`} />
+              <span className="flex flex-col items-center gap-1">
+                <span className="h-1.5 w-1.5 rounded-full bg-current" />
+                <span className="h-1.5 w-1.5 rounded-full bg-current" />
+                <span className="h-1.5 w-1.5 rounded-full bg-current" />
               </span>
             </Motion.button>
           </div>
